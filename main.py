@@ -2,11 +2,13 @@ import base64
 import logging
 import sys
 
+
 from PySide6.QtCore import QFile, QIODevice
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QApplication, QMainWindow
 
 from deserialize_dot_net import Deserializer
+from ngu_helper_ui import Ui_MainWindow
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -38,16 +40,12 @@ def read_savefile(file):
         ret = des.get('PlayerData')
         return ret
 
-class App(QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self):
-        super().__init__()
-        ui_file_name = "untitled.ui.ui"
-        ui_file = QFile(ui_file_name)
-        if not ui_file.open():
-            print(f"Cannot open {ui_file_name}: {ui_file.errorString()}")
-            sys.exit(-1)
-        loader = QUiLoader()
-        window = loader.load(ui_file)
+        super(MainWindow, self).__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+
 
 
 if __name__ == "__main__":
@@ -56,9 +54,11 @@ if __name__ == "__main__":
     print(obj.get("curEnergy/value"))
 
     app = QApplication(sys.argv)
-    ex = App()
-    ex.show()
+
+    window = MainWindow()
+    window.show()
+
     logger.debug("Ending the application")
-    sys.exit(app.exit())
+    sys.exit(app.exec())
 
 
