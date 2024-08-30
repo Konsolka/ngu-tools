@@ -25,6 +25,7 @@ background-color:rgb(202, 224, 228);
 
 QLabel {
 font-size: 12px;
+color:rgb(0, 0, 0);
 }
 
 QLabel[type_of_header=&quot;0&quot;] {
@@ -43,7 +44,10 @@ color:rgb(255,255,255);
 QLabel[type_of_header=&quot;2&quot;] {
 background-color: rgb(255, 229, 198);
 font-family: &quot;Nunito&quot;, sans-serif;
-color:rgb(0, 0, 0);
+}
+
+QLabel[type_of_header=&quot;3&quot;]{
+background-color:rgb(253, 242, 199);
 }</string>
   </property>
   <widget class="QLabel" name="label">
@@ -80,7 +84,7 @@ color:rgb(0, 0, 0);
     <string>0</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -208,6 +212,9 @@ color:rgb(0, 0, 0);
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
+            <property name="type_of_header" stdset="0">
+             <string>3</string>
+            </property>
            </widget>
           </item>
           <item>
@@ -230,6 +237,9 @@ color:rgb(0, 0, 0);
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
+            <property name="type_of_header" stdset="0">
+             <string>3</string>
+            </property>
            </widget>
           </item>
           <item>
@@ -251,6 +261,9 @@ color:rgb(0, 0, 0);
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+            <property name="type_of_header" stdset="0">
+             <string>3</string>
             </property>
            </widget>
           </item>
@@ -378,6 +391,9 @@ color:rgb(0, 0, 0);
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
+            <property name="type_of_header" stdset="0">
+             <string>3</string>
+            </property>
            </widget>
           </item>
           <item>
@@ -400,6 +416,9 @@ color:rgb(0, 0, 0);
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
+            <property name="type_of_header" stdset="0">
+             <string>3</string>
+            </property>
            </widget>
           </item>
           <item>
@@ -421,6 +440,9 @@ color:rgb(0, 0, 0);
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+            <property name="type_of_header" stdset="0">
+             <string>3</string>
             </property>
            </widget>
           </item>
@@ -551,6 +573,9 @@ color:rgb(0, 0, 0);
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
+              <property name="type_of_header" stdset="0">
+               <string>3</string>
+              </property>
              </widget>
             </item>
             <item>
@@ -573,6 +598,9 @@ color:rgb(0, 0, 0);
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
+              <property name="type_of_header" stdset="0">
+               <string>3</string>
+              </property>
              </widget>
             </item>
             <item>
@@ -594,6 +622,9 @@ color:rgb(0, 0, 0);
               </property>
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>
+              </property>
+              <property name="type_of_header" stdset="0">
+               <string>3</string>
               </property>
              </widget>
             </item>
@@ -704,6 +735,9 @@ color:rgb(0, 0, 0);
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
+              <property name="type_of_header" stdset="0">
+               <string>3</string>
+              </property>
              </widget>
             </item>
             <item>
@@ -725,6 +759,9 @@ color:rgb(0, 0, 0);
               </property>
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>
+              </property>
+              <property name="type_of_header" stdset="0">
+               <string>3</string>
               </property>
              </widget>
             </item>
@@ -748,6 +785,9 @@ color:rgb(0, 0, 0);
               <property name="alignment">
                <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
+              <property name="type_of_header" stdset="0">
+               <string>3</string>
+              </property>
              </widget>
             </item>
            </layout>
@@ -760,7 +800,7 @@ color:rgb(0, 0, 0);
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -1089,6 +1129,9 @@ color:rgb(0, 0, 0);
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
+          <property name="type_of_header" stdset="0">
+           <string>3</string>
+          </property>
          </widget>
         </item>
         <item>
@@ -1111,6 +1154,9 @@ color:rgb(0, 0, 0);
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
           </property>
+          <property name="type_of_header" stdset="0">
+           <string>3</string>
+          </property>
          </widget>
         </item>
         <item>
@@ -1132,6 +1178,9 @@ color:rgb(0, 0, 0);
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+          <property name="type_of_header" stdset="0">
+           <string>3</string>
           </property>
          </widget>
         </item>
