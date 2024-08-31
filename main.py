@@ -2,13 +2,14 @@ import base64
 import logging
 import sys
 
-
-from PySide6.QtCore import QFile, QIODevice
-from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication
 
 from deserialize_dot_net import Deserializer
-from ngu_helper_ui import Ui_MainWindow
+
+from main_window import MainWindow
+
+from handler import Handler
+from ratioz import Ratios
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -21,7 +22,6 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-
 
 def read_savefile(file):
     logger.info(f"Reading file {file}")
@@ -40,22 +40,20 @@ def read_savefile(file):
         ret = des.get('PlayerData')
         return ret
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super(MainWindow, self).__init__()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
+
 
 
 
 if __name__ == "__main__":
     logger.debug("Starting the application")
-    obj = read_savefile("test.txt")
-    print(obj.get("curEnergy/value"))
+    handler = Handler(read_savefile("test.txt"))
 
     app = QApplication(sys.argv)
 
-    window = MainWindow()
+    window = MainWindow(handler)
+    window.init_ratios()
+
+
     window.show()
 
     logger.debug("Ending the application")
