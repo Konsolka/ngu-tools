@@ -9,7 +9,7 @@ from deserialize_dot_net import Deserializer
 from main_window import MainWindow
 
 from handler import Handler
-from ratioz import Ratios
+
 
 logging.basicConfig(
     level=logging.DEBUG,
