@@ -1,4 +1,4 @@
-from handler import Handler
+from src.handler import Handler
 
 
 class Stats:

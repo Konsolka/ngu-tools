@@ -1,9 +1,7 @@
-import argparse
 import base64
-import json
 import sys
 import logging
-from deserialize_dot_net import Deserializer
+from src.deserialize_dot_net import Deserializer
 
 HEADERS = {
     "playtime": "totalPlaytime/value/totalseconds",

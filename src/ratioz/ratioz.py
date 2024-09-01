@@ -1,7 +1,6 @@
-from deserialize_dot_net import Deserializer
-from handler import Handler
-from stats import Stats
 import math
+
+from src.stats import Stats
 
 def ceiling_precise(number, significance=1.0):
     if significance == 0:

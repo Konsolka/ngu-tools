@@ -1,4 +1,4 @@
-from deserialize_dot_net import DictQuery
+from src.deserialize_dot_net import DictQuery
 
 class Handler:
     def __init__(self, handler:DictQuery):

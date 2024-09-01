@@ -1,8 +1,7 @@
 import struct
 import copy
-import logging
 
-LOG = logging.getLogger()
+from logger import logger
 
 SEPARATOR = '/'
 
@@ -43,10 +42,10 @@ class Deserializer:
                 elif _type == 15:  # Array of primitives
                     ret.append(self.parse_primarr())
                 elif _type == 11:  # END
-                    LOG.debug(f"Found end")
+                    logger.debug(f"Found end")
                     break
                 else:
-                    LOG.error(f"Stopping on {_type}")
+                    logger.error(f"Stopping on {_type}")
                     break
             except UnhandledData:
                 break
@@ -153,19 +152,19 @@ class Deserializer:
             _hex += [f"  " for _x in range(new_end, start + 16)]
             _str = [f"{chr(_x) if 31 < _x < 127 else '.'}" for _x in self.data[start:new_end]]
             _str += [" " for _x in range(new_end, start + 16)]
-            LOG.debug(f"{start:08x}    " + " ".join(_hex) + "    " + "".join(_str))
+            logger.debug(f"{start:08x}    " + " ".join(_hex) + "    " + "".join(_str))
             start += 16
 
     def parse_class(self):
         orig_pos = self.pos
         elem_type = self.read_byte()
         if elem_type not in (4, 5):
-            LOG.error(f"Unsupported data type: {elem_type}")
+            logger.error(f"Unsupported data type: {elem_type}")
             raise UnhandledData
         _id = self.read_u32()
         cname = self.read_str()
         count = self.read_u32()
-        LOG.debug(f"{cname}({_id}) @ {orig_pos:04x} Count: {count}")
+        logger.debug(f"{cname}({_id}) @ {orig_pos:04x} Count: {count}")
         cls_idx = []
         cls = {}
         while count:
@@ -191,7 +190,7 @@ class Deserializer:
     def parse_refobj(self):
         orig_pos = self.pos
         if self.data[self.pos] != 1:
-            LOG.error(f"Unsupported data type: {self.data[self.pos]}")
+            logger.error(f"Unsupported data type: {self.data[self.pos]}")
             raise UnhandledData
         self.pos += 1
         _id = self.read_u32()
@@ -202,7 +201,7 @@ class Deserializer:
     def parse_primarr(self):
         orig_pos = self.pos
         if self.data[self.pos] != 15:
-            LOG.error(f"Unsupported data type: {self.data[self.pos]}")
+            logger.error(f"Unsupported data type: {self.data[self.pos]}")
             raise UnhandledData
         self.pos += 1
         _id = self.read_u32()
@@ -218,14 +217,14 @@ class Deserializer:
     def parse_generic_array(self):
         orig_pos = self.pos
         if self.data[self.pos] != 7:
-            LOG.error(f"Unsupported data type: {self.data[self.pos]}")
+            logger.error(f"Unsupported data type: {self.data[self.pos]}")
             raise UnhandledData
         self.pos += 1
         _id = self.read_u32()
         array_type = self.read_byte()
         dimensions = self.read_u32()
         if array_type != 0 or dimensions != 1:
-            LOG.error("Multidimensional arrays not supported")
+            logger.error("Multidimensional arrays not supported")
             raise UnhandledData
         elems_per_dim = []
         for i in range(0, dimensions):
@@ -243,17 +242,17 @@ class Deserializer:
         return self.idmap[_id]
 
     def parse_runtime_obj(self):
-        LOG.error("parse_runtime_obj unsupported")
+        logger.error("parse_runtime_obj unsupported")
         raise UnhandledData
         orig_pos = self.pos
         if self.data[self.pos] != 4:
-            LOG.error(f"Unsupported data type: {data[self.pos]}")
+            logger.error(f"Unsupported data type: {data[self.pos]}")
             raise UnhandledData
         self.pos += 1
         _id = self.read_u32()
         cname = self.read_str()
         count = self.read_u32()
-        LOG.debug(f"{cname}({_id}) @@ {orig_pos:04x} Count: {count}")
+        logger.debug(f"{cname}({_id}) @@ {orig_pos:04x} Count: {count}")
         cls_idx = []
         cls = {}
         while count:
@@ -274,7 +273,7 @@ class Deserializer:
         elif type_tag == 7:  # primitive array
             return self.read_byte()
         else:
-            LOG.error(f"Can't handle type '{type_tag}'")
+            logger.error(f"Can't handle type '{type_tag}'")
             raise UnhandledData
 
     def get_prim_value(self, primtype):
@@ -289,7 +288,7 @@ class Deserializer:
         elif primtype == 11:  # float
             return self.read_float()
         else:
-            LOG.error(f"Can't handle prim type '{primtype}'")
+            logger.error(f"Can't handle prim type '{primtype}'")
             raise UnhandledData
 
     def get_single_value(self, type_tag, type_spec, name):
@@ -297,7 +296,7 @@ class Deserializer:
             return None, self.get_prim_value(type_spec)
         elif type_tag == 1:  # string
             if self.data[self.pos] != 6:
-                LOG.error(f"Could not parse string for {name}")
+                logger.error(f"Could not parse string for {name}")
                 raise UnhandledData
             self.pos += 1
             _id = self.read_u32()
@@ -306,26 +305,26 @@ class Deserializer:
             elem = self.data[self.pos]
             if elem == 1:  # reference of object
                 origpos = self.pos
-                LOG.debug(f"(1) {name} - {self.pos:02x}")
+                logger.debug(f"(1) {name} - {self.pos:02x}")
                 self.printhex(origpos, self.pos)
                 return None, self.parse_refobj()
             elif elem == 4:  # runtime
                 origpos = self.pos
-                LOG.debug(f"(5) {name} - {origpos:02x}")
+                logger.debug(f"(5) {name} - {origpos:02x}")
                 self.printhex(origpos, self.pos + 48)
                 return None, self.parse_class()
             elif elem == 5:  # class
                 origpos = self.pos
-                LOG.debug(f"(5) {name} - {origpos:02x}")
+                logger.debug(f"(5) {name} - {origpos:02x}")
                 self.printhex(origpos, self.pos + 48)
                 return None, self.parse_class()
             elif elem == 9:  # object ref
                 self.pos += 1
                 _id = self.read_u32()
                 if _id in self.idmap:
-                    LOG.debug(f"Found object reference: {self.idmap[_id]} for {name}")
+                    logger.debug(f"Found object reference: {self.idmap[_id]} for {name}")
                 else:
-                    LOG.debug(f"Found deferred object reference '{_id}' for {name}")
+                    logger.debug(f"Found deferred object reference '{_id}' for {name}")
                 return _id, "deferred"
             elif elem == 10:  # NullValue
                 self.pos += 1
@@ -339,22 +338,22 @@ class Deserializer:
                 count = self.read_u32()
                 return None, [None for _ in range(0, count)]
             else:
-                LOG.error(f"Unknown element type {elem} for {name}")
+                logger.error(f"Unknown element type {elem} for {name}")
                 raise UnhandledData
         else:
-            LOG.error(f"Couldn't handle type {type_tag} for {name}")
+            logger.error(f"Couldn't handle type {type_tag} for {name}")
             raise UnhandledData
 
     def get_class_values(self, meta_id):
         if meta_id not in self.meta:
-            LOG.error(f"Couldn't find meta-id {meta_id}")
+            logger.error(f"Couldn't find meta-id {meta_id}")
             raise UnhandledData
         cls = copy.deepcopy(self.meta[meta_id])
         cls_idx = cls.pop('__fields__')
         start = self.pos
         for name in cls_idx:
             _type = cls[name]['type']
-            LOG.debug(f"{name} -- {_type}")
+            logger.debug(f"{name} -- {_type}")
             _id, value = self.get_single_value(_type, cls[name]['code'], name)
             if value == 'deferred':
                 cls[name]['deferred'] = _id

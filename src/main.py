@@ -4,24 +4,13 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
+from logger import logger
 from deserialize_dot_net import Deserializer
 
 from main_window import MainWindow
 
 from handler import Handler
 
-
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.FileHandler("app.log"),
-        logging.StreamHandler()
-    ]
-)
-
-logger = logging.getLogger(__name__)
 
 def read_savefile(file):
     logger.info(f"Reading file {file}")
@@ -45,7 +34,7 @@ def read_savefile(file):
 
 
 if __name__ == "__main__":
-    logger.debug("Starting the application")
+    logger.info("Starting the application")
     handler = Handler(read_savefile("test.txt"))
 
     app = QApplication(sys.argv)
@@ -53,10 +42,9 @@ if __name__ == "__main__":
     window = MainWindow(handler)
     window.init_ratios()
 
-
     window.show()
 
-    logger.debug("Ending the application")
+    logger.info("Ending the application")
     sys.exit(app.exec())
 
 

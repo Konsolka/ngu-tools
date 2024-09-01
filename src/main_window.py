@@ -1,11 +1,10 @@
 from PySide6.QtCore import Slot, QTimer
 
-from ngu_helper_ui import Ui_MainWindow
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QToolTip
+from src.ui_files.ngu_helper_ui import Ui_MainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QToolTip
 from handler import Handler
-from ratioz import Ratios
-from stats import Stats
-
+from src.ratioz.ratioz import Ratios
+from src.stats import Stats
 
 def return_c_for_cr(number):
     return '↑' if number > 1.0 else '↓' if number < 1.0 else '~'
