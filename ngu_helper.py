@@ -25,7 +25,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(1668, 1093)
+        MainWindow.resize(1668, 1317)
         MainWindow.setMinimumSize(QSize(1280, 720))
         MainWindow.setStyleSheet(u"QMainWindow{\n"
 "background-color:rgb(202, 224, 228);\n"
@@ -45,6 +45,9 @@ class Ui_MainWindow(object):
 "	background-color: rgb(116, 143, 246);\n"
 "}\n"
 "\n"
+"QWidget#r3{\n"
+"background-color:rgb(153, 0, 233);\n"
+"}\n"
 "QWidget#energy{\n"
 "background-color:rgb(86, 206, 127);\n"
 "}\n"
@@ -66,9 +69,9 @@ class Ui_MainWindow(object):
 "font-family: \"Orbitron\", sans-serif;\n"
 "}\n"
 "\n"
-"QLabel[type_of_header=\"1\"] {\n"
-"background-color: rgb(153, 153, 1"
-                        "51);\n"
+"QLabel["
+                        "type_of_header=\"1\"] {\n"
+"background-color: rgb(153, 153, 151);\n"
 "font-family: \"Comfortaa\", sans-serif;\n"
 "color:rgb(255,255,255);\n"
 "}\n"
@@ -92,13 +95,13 @@ class Ui_MainWindow(object):
         self.Title_Of_The_Tab.setFont(font)
         self.Title_Of_The_Tab.setStyleSheet(u"")
         self.Title_Of_The_Tab.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.widget = QWidget(self.centralwidget)
-        self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(20, 130, 1061, 661))
-        self.horizontalLayout_4 = QHBoxLayout(self.widget)
+        self.layoutWidget = QWidget(self.centralwidget)
+        self.layoutWidget.setObjectName(u"layoutWidget")
+        self.layoutWidget.setGeometry(QRect(20, 130, 1413, 661))
+        self.horizontalLayout_4 = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.energy = QWidget(self.widget)
+        self.energy = QWidget(self.layoutWidget)
         self.energy.setObjectName(u"energy")
         self.energy.setEnabled(True)
         self.verticalLayout_3 = QVBoxLayout(self.energy)
@@ -534,7 +537,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.energy)
 
-        self.magic = QWidget(self.widget)
+        self.magic = QWidget(self.layoutWidget)
         self.magic.setObjectName(u"magic")
         self.verticalLayout_8 = QVBoxLayout(self.magic)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
@@ -969,6 +972,441 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addWidget(self.magic)
 
+        self.r3 = QWidget(self.layoutWidget)
+        self.r3.setObjectName(u"r3")
+        self.verticalLayout_10 = QVBoxLayout(self.r3)
+        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
+        self.Title_4 = QLabel(self.r3)
+        self.Title_4.setObjectName(u"Title_4")
+
+        self.verticalLayout_10.addWidget(self.Title_4)
+
+        self.layout_r3_base_stats = QVBoxLayout()
+        self.layout_r3_base_stats.setSpacing(0)
+        self.layout_r3_base_stats.setObjectName(u"layout_r3_base_stats")
+        self.header_13 = QLabel(self.r3)
+        self.header_13.setObjectName(u"header_13")
+        self.header_13.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.layout_r3_base_stats.addWidget(self.header_13)
+
+        self.gridLayout_16 = QGridLayout()
+        self.gridLayout_16.setObjectName(u"gridLayout_16")
+        self.label_31 = QLabel(self.r3)
+        self.label_31.setObjectName(u"label_31")
+        self.label_31.setMinimumSize(QSize(130, 21))
+        self.label_31.setMaximumSize(QSize(130, 21))
+        self.label_31.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_16.addWidget(self.label_31, 0, 0, 1, 1)
+
+        self.r3_base_bar = QLabel(self.r3)
+        self.r3_base_bar.setObjectName(u"r3_base_bar")
+        self.r3_base_bar.setMinimumSize(QSize(130, 21))
+        self.r3_base_bar.setMaximumSize(QSize(130, 21))
+        self.r3_base_bar.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_16.addWidget(self.r3_base_bar, 1, 2, 1, 1)
+
+        self.label_32 = QLabel(self.r3)
+        self.label_32.setObjectName(u"label_32")
+        self.label_32.setMinimumSize(QSize(130, 21))
+        self.label_32.setMaximumSize(QSize(130, 21))
+        self.label_32.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_16.addWidget(self.label_32, 0, 1, 1, 1)
+
+        self.r3_base_cap = QLabel(self.r3)
+        self.r3_base_cap.setObjectName(u"r3_base_cap")
+        self.r3_base_cap.setMinimumSize(QSize(130, 21))
+        self.r3_base_cap.setMaximumSize(QSize(130, 21))
+        self.r3_base_cap.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_16.addWidget(self.r3_base_cap, 1, 1, 1, 1)
+
+        self.label_33 = QLabel(self.r3)
+        self.label_33.setObjectName(u"label_33")
+        self.label_33.setMinimumSize(QSize(130, 21))
+        self.label_33.setMaximumSize(QSize(130, 21))
+        self.label_33.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_16.addWidget(self.label_33, 0, 2, 1, 1)
+
+        self.r3_base_power = QLabel(self.r3)
+        self.r3_base_power.setObjectName(u"r3_base_power")
+        self.r3_base_power.setMinimumSize(QSize(130, 21))
+        self.r3_base_power.setMaximumSize(QSize(130, 21))
+        self.r3_base_power.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_16.addWidget(self.r3_base_power, 1, 0, 1, 1)
+
+
+        self.layout_r3_base_stats.addLayout(self.gridLayout_16)
+
+
+        self.verticalLayout_10.addLayout(self.layout_r3_base_stats)
+
+        self.layout_r3_current_ratio = QVBoxLayout()
+        self.layout_r3_current_ratio.setSpacing(0)
+        self.layout_r3_current_ratio.setObjectName(u"layout_r3_current_ratio")
+        self.header_14 = QLabel(self.r3)
+        self.header_14.setObjectName(u"header_14")
+        self.header_14.setMinimumSize(QSize(395, 21))
+        self.header_14.setMaximumSize(QSize(16777215, 21))
+        self.header_14.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.layout_r3_current_ratio.addWidget(self.header_14)
+
+        self.gridLayout_17 = QGridLayout()
+        self.gridLayout_17.setObjectName(u"gridLayout_17")
+        self.label_63 = QLabel(self.r3)
+        self.label_63.setObjectName(u"label_63")
+        self.label_63.setMinimumSize(QSize(130, 21))
+        self.label_63.setMaximumSize(QSize(130, 21))
+        self.label_63.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_17.addWidget(self.label_63, 0, 1, 1, 1)
+
+        self.label_64 = QLabel(self.r3)
+        self.label_64.setObjectName(u"label_64")
+        self.label_64.setMinimumSize(QSize(130, 21))
+        self.label_64.setMaximumSize(QSize(130, 21))
+        self.label_64.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_17.addWidget(self.label_64, 0, 0, 1, 1)
+
+        self.label_65 = QLabel(self.r3)
+        self.label_65.setObjectName(u"label_65")
+        self.label_65.setMinimumSize(QSize(130, 21))
+        self.label_65.setMaximumSize(QSize(130, 21))
+        self.label_65.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_17.addWidget(self.label_65, 0, 2, 1, 1)
+
+        self.horizontalLayout_8 = QHBoxLayout()
+        self.horizontalLayout_8.setSpacing(0)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.r3_cr_power = QLabel(self.r3)
+        self.r3_cr_power.setObjectName(u"r3_cr_power")
+        self.r3_cr_power.setMinimumSize(QSize(105, 21))
+        self.r3_cr_power.setMaximumSize(QSize(130, 21))
+        self.r3_cr_power.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_8.addWidget(self.r3_cr_power)
+
+        self.r3_cr_power_checker = QLabel(self.r3)
+        self.r3_cr_power_checker.setObjectName(u"r3_cr_power_checker")
+        self.r3_cr_power_checker.setMinimumSize(QSize(25, 21))
+        self.r3_cr_power_checker.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_8.addWidget(self.r3_cr_power_checker)
+
+
+        self.gridLayout_17.addLayout(self.horizontalLayout_8, 1, 0, 1, 1)
+
+        self.horizontalLayout_9 = QHBoxLayout()
+        self.horizontalLayout_9.setSpacing(0)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.r3_cr_cap = QLabel(self.r3)
+        self.r3_cr_cap.setObjectName(u"r3_cr_cap")
+        self.r3_cr_cap.setMinimumSize(QSize(105, 21))
+        self.r3_cr_cap.setMaximumSize(QSize(130, 21))
+        self.r3_cr_cap.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_9.addWidget(self.r3_cr_cap)
+
+        self.r3_cr_cap_checker = QLabel(self.r3)
+        self.r3_cr_cap_checker.setObjectName(u"r3_cr_cap_checker")
+        self.r3_cr_cap_checker.setMinimumSize(QSize(25, 21))
+        self.r3_cr_cap_checker.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_9.addWidget(self.r3_cr_cap_checker)
+
+
+        self.gridLayout_17.addLayout(self.horizontalLayout_9, 1, 1, 1, 1)
+
+        self.horizontalLayout_10 = QHBoxLayout()
+        self.horizontalLayout_10.setSpacing(0)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.r3_cr_bars = QLabel(self.r3)
+        self.r3_cr_bars.setObjectName(u"r3_cr_bars")
+        self.r3_cr_bars.setMinimumSize(QSize(105, 21))
+        self.r3_cr_bars.setMaximumSize(QSize(130, 21))
+        self.r3_cr_bars.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_10.addWidget(self.r3_cr_bars)
+
+        self.r3_cr_bar_checker = QLabel(self.r3)
+        self.r3_cr_bar_checker.setObjectName(u"r3_cr_bar_checker")
+        self.r3_cr_bar_checker.setMinimumSize(QSize(25, 21))
+        self.r3_cr_bar_checker.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.horizontalLayout_10.addWidget(self.r3_cr_bar_checker)
+
+
+        self.gridLayout_17.addLayout(self.horizontalLayout_10, 1, 2, 1, 1)
+
+
+        self.layout_r3_current_ratio.addLayout(self.gridLayout_17)
+
+
+        self.verticalLayout_10.addLayout(self.layout_r3_current_ratio)
+
+        self.verticalSpacer_7 = QSpacerItem(20, 15, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
+
+        self.verticalLayout_10.addItem(self.verticalSpacer_7)
+
+        self.layout_r3_goal_ratio_3 = QVBoxLayout()
+        self.layout_r3_goal_ratio_3.setSpacing(0)
+        self.layout_r3_goal_ratio_3.setObjectName(u"layout_r3_goal_ratio_3")
+        self.header_15 = QLabel(self.r3)
+        self.header_15.setObjectName(u"header_15")
+        self.header_15.setMinimumSize(QSize(395, 21))
+        self.header_15.setMaximumSize(QSize(16777215, 21))
+        self.header_15.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.layout_r3_goal_ratio_3.addWidget(self.header_15)
+
+        self.gridLayout_18 = QGridLayout()
+        self.gridLayout_18.setObjectName(u"gridLayout_18")
+        self.r3_goal_edit_power = QLineEdit(self.r3)
+        self.r3_goal_edit_power.setObjectName(u"r3_goal_edit_power")
+        self.r3_goal_edit_power.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.r3_goal_edit_power.setInputMethodHints(Qt.InputMethodHint.ImhNone)
+
+        self.gridLayout_18.addWidget(self.r3_goal_edit_power, 1, 0, 1, 1)
+
+        self.label_66 = QLabel(self.r3)
+        self.label_66.setObjectName(u"label_66")
+        self.label_66.setMinimumSize(QSize(130, 21))
+        self.label_66.setMaximumSize(QSize(130, 21))
+        self.label_66.setAutoFillBackground(False)
+        self.label_66.setStyleSheet(u"")
+        self.label_66.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_18.addWidget(self.label_66, 0, 0, 1, 1)
+
+        self.label_67 = QLabel(self.r3)
+        self.label_67.setObjectName(u"label_67")
+        self.label_67.setMinimumSize(QSize(130, 21))
+        self.label_67.setMaximumSize(QSize(130, 21))
+        self.label_67.setFont(font1)
+        self.label_67.setAutoFillBackground(False)
+        self.label_67.setStyleSheet(u"")
+        self.label_67.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_18.addWidget(self.label_67, 0, 1, 1, 1)
+
+        self.r3_goal_edit_cap = QLineEdit(self.r3)
+        self.r3_goal_edit_cap.setObjectName(u"r3_goal_edit_cap")
+
+        self.gridLayout_18.addWidget(self.r3_goal_edit_cap, 1, 1, 1, 1)
+
+        self.label_68 = QLabel(self.r3)
+        self.label_68.setObjectName(u"label_68")
+        self.label_68.setMinimumSize(QSize(130, 21))
+        self.label_68.setMaximumSize(QSize(130, 21))
+        self.label_68.setAutoFillBackground(False)
+        self.label_68.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_18.addWidget(self.label_68, 0, 2, 1, 1)
+
+        self.r3_goal_edit_bar = QLineEdit(self.r3)
+        self.r3_goal_edit_bar.setObjectName(u"r3_goal_edit_bar")
+
+        self.gridLayout_18.addWidget(self.r3_goal_edit_bar, 1, 2, 1, 1)
+
+
+        self.layout_r3_goal_ratio_3.addLayout(self.gridLayout_18)
+
+
+        self.verticalLayout_10.addLayout(self.layout_r3_goal_ratio_3)
+
+        self.verticalSpacer_8 = QSpacerItem(420, 89, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Maximum)
+
+        self.verticalLayout_10.addItem(self.verticalSpacer_8)
+
+        self.layout_r3_base_goals = QVBoxLayout()
+        self.layout_r3_base_goals.setSpacing(0)
+        self.layout_r3_base_goals.setObjectName(u"layout_r3_base_goals")
+        self.header_16 = QLabel(self.r3)
+        self.header_16.setObjectName(u"header_16")
+        self.header_16.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.layout_r3_base_goals.addWidget(self.header_16)
+
+        self.gridLayout_19 = QGridLayout()
+        self.gridLayout_19.setObjectName(u"gridLayout_19")
+        self.r3_base_goal_power = QLabel(self.r3)
+        self.r3_base_goal_power.setObjectName(u"r3_base_goal_power")
+        self.r3_base_goal_power.setMinimumSize(QSize(130, 21))
+        self.r3_base_goal_power.setMaximumSize(QSize(130, 21))
+        self.r3_base_goal_power.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_19.addWidget(self.r3_base_goal_power, 1, 0, 1, 1)
+
+        self.r3_base_goal_bar = QLabel(self.r3)
+        self.r3_base_goal_bar.setObjectName(u"r3_base_goal_bar")
+        self.r3_base_goal_bar.setMinimumSize(QSize(130, 21))
+        self.r3_base_goal_bar.setMaximumSize(QSize(130, 21))
+        self.r3_base_goal_bar.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_19.addWidget(self.r3_base_goal_bar, 1, 2, 1, 1)
+
+        self.r3_base_goal_cap = QLabel(self.r3)
+        self.r3_base_goal_cap.setObjectName(u"r3_base_goal_cap")
+        self.r3_base_goal_cap.setMinimumSize(QSize(130, 21))
+        self.r3_base_goal_cap.setMaximumSize(QSize(130, 21))
+        self.r3_base_goal_cap.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_19.addWidget(self.r3_base_goal_cap, 1, 1, 1, 1)
+
+        self.label_69 = QLabel(self.r3)
+        self.label_69.setObjectName(u"label_69")
+        self.label_69.setMinimumSize(QSize(130, 21))
+        self.label_69.setMaximumSize(QSize(130, 21))
+        self.label_69.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_19.addWidget(self.label_69, 0, 2, 1, 1)
+
+        self.label_70 = QLabel(self.r3)
+        self.label_70.setObjectName(u"label_70")
+        self.label_70.setMinimumSize(QSize(130, 21))
+        self.label_70.setMaximumSize(QSize(130, 21))
+        self.label_70.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_19.addWidget(self.label_70, 0, 0, 1, 1)
+
+        self.label_71 = QLabel(self.r3)
+        self.label_71.setObjectName(u"label_71")
+        self.label_71.setMinimumSize(QSize(130, 21))
+        self.label_71.setMaximumSize(QSize(130, 21))
+        self.label_71.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_19.addWidget(self.label_71, 0, 1, 1, 1)
+
+
+        self.layout_r3_base_goals.addLayout(self.gridLayout_19)
+
+
+        self.verticalLayout_10.addLayout(self.layout_r3_base_goals)
+
+        self.layout_r3_amount_left_to_buy = QVBoxLayout()
+        self.layout_r3_amount_left_to_buy.setSpacing(0)
+        self.layout_r3_amount_left_to_buy.setObjectName(u"layout_r3_amount_left_to_buy")
+        self.name_r3_amount_left_to_buy = QLabel(self.r3)
+        self.name_r3_amount_left_to_buy.setObjectName(u"name_r3_amount_left_to_buy")
+        self.name_r3_amount_left_to_buy.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.layout_r3_amount_left_to_buy.addWidget(self.name_r3_amount_left_to_buy)
+
+        self.gridLayout_20 = QGridLayout()
+        self.gridLayout_20.setObjectName(u"gridLayout_20")
+        self.label_72 = QLabel(self.r3)
+        self.label_72.setObjectName(u"label_72")
+        self.label_72.setMinimumSize(QSize(130, 21))
+        self.label_72.setMaximumSize(QSize(130, 21))
+        self.label_72.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.label_72, 2, 0, 1, 1)
+
+        self.r3_exp_cost_cap = QLabel(self.r3)
+        self.r3_exp_cost_cap.setObjectName(u"r3_exp_cost_cap")
+        self.r3_exp_cost_cap.setMinimumSize(QSize(130, 21))
+        self.r3_exp_cost_cap.setMaximumSize(QSize(130, 21))
+        self.r3_exp_cost_cap.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.r3_exp_cost_cap, 3, 1, 1, 1)
+
+        self.r3_exp_cost_power = QLabel(self.r3)
+        self.r3_exp_cost_power.setObjectName(u"r3_exp_cost_power")
+        self.r3_exp_cost_power.setMinimumSize(QSize(130, 21))
+        self.r3_exp_cost_power.setMaximumSize(QSize(130, 21))
+        self.r3_exp_cost_power.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.r3_exp_cost_power, 3, 0, 1, 1)
+
+        self.label_73 = QLabel(self.r3)
+        self.label_73.setObjectName(u"label_73")
+        self.label_73.setMinimumSize(QSize(130, 21))
+        self.label_73.setMaximumSize(QSize(130, 21))
+        self.label_73.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.label_73, 0, 0, 1, 1)
+
+        self.label_74 = QLabel(self.r3)
+        self.label_74.setObjectName(u"label_74")
+        self.label_74.setMinimumSize(QSize(130, 21))
+        self.label_74.setMaximumSize(QSize(130, 21))
+        self.label_74.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.label_74, 2, 1, 1, 1)
+
+        self.label_75 = QLabel(self.r3)
+        self.label_75.setObjectName(u"label_75")
+        self.label_75.setMinimumSize(QSize(130, 21))
+        self.label_75.setMaximumSize(QSize(130, 21))
+        self.label_75.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.label_75, 0, 1, 1, 1)
+
+        self.label_76 = QLabel(self.r3)
+        self.label_76.setObjectName(u"label_76")
+        self.label_76.setMinimumSize(QSize(130, 21))
+        self.label_76.setMaximumSize(QSize(130, 21))
+        self.label_76.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.label_76, 0, 2, 1, 1)
+
+        self.label_77 = QLabel(self.r3)
+        self.label_77.setObjectName(u"label_77")
+        self.label_77.setMinimumSize(QSize(130, 21))
+        self.label_77.setMaximumSize(QSize(130, 21))
+        self.label_77.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.label_77, 2, 2, 1, 1)
+
+        self.r3_exp_cost_bars = QLabel(self.r3)
+        self.r3_exp_cost_bars.setObjectName(u"r3_exp_cost_bars")
+        self.r3_exp_cost_bars.setMinimumSize(QSize(130, 21))
+        self.r3_exp_cost_bars.setMaximumSize(QSize(130, 21))
+        self.r3_exp_cost_bars.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.gridLayout_20.addWidget(self.r3_exp_cost_bars, 3, 2, 1, 1)
+
+        self.r3_amount_left_to_buy_bar = QPushButton(self.r3)
+        self.r3_amount_left_to_buy_bar.setObjectName(u"r3_amount_left_to_buy_bar")
+        self.r3_amount_left_to_buy_bar.setMinimumSize(QSize(21, 21))
+        self.r3_amount_left_to_buy_bar.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+        self.r3_amount_left_to_buy_bar.setIcon(icon)
+
+        self.gridLayout_20.addWidget(self.r3_amount_left_to_buy_bar, 1, 2, 1, 1)
+
+        self.r3_amount_left_to_buy_cap = QPushButton(self.r3)
+        self.r3_amount_left_to_buy_cap.setObjectName(u"r3_amount_left_to_buy_cap")
+        self.r3_amount_left_to_buy_cap.setMinimumSize(QSize(21, 21))
+        self.r3_amount_left_to_buy_cap.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+        self.r3_amount_left_to_buy_cap.setIcon(icon)
+
+        self.gridLayout_20.addWidget(self.r3_amount_left_to_buy_cap, 1, 1, 1, 1)
+
+        self.r3_amount_left_to_buy_power = QPushButton(self.r3)
+        self.r3_amount_left_to_buy_power.setObjectName(u"r3_amount_left_to_buy_power")
+        self.r3_amount_left_to_buy_power.setMinimumSize(QSize(21, 21))
+        self.r3_amount_left_to_buy_power.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
+        self.r3_amount_left_to_buy_power.setIcon(icon)
+
+        self.gridLayout_20.addWidget(self.r3_amount_left_to_buy_power, 1, 0, 1, 1)
+
+
+        self.layout_r3_amount_left_to_buy.addLayout(self.gridLayout_20)
+
+
+        self.verticalLayout_10.addLayout(self.layout_r3_amount_left_to_buy)
+
+
+        self.horizontalLayout_4.addWidget(self.r3)
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -1144,5 +1582,87 @@ class Ui_MainWindow(object):
         self.magic_amount_left_to_buy_bar.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.magic_amount_left_to_buy_cap.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.magic_amount_left_to_buy_power.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.Title_4.setText(QCoreApplication.translate("MainWindow", u"R3", None))
+        self.Title_4.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"misc", None))
+        self.header_13.setText(QCoreApplication.translate("MainWindow", u"Your Base R3 Stats", None))
+        self.header_13.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"1", None))
+        self.label_31.setText(QCoreApplication.translate("MainWindow", u"Power", None))
+        self.label_31.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.r3_base_bar.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_base_bar.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.label_32.setText(QCoreApplication.translate("MainWindow", u"Cap", None))
+        self.label_32.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.r3_base_cap.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_base_cap.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"Bars", None))
+        self.label_33.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.r3_base_power.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_base_power.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.header_14.setText(QCoreApplication.translate("MainWindow", u"Your Current R3 Ratio", None))
+        self.header_14.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"1", None))
+        self.label_63.setText(QCoreApplication.translate("MainWindow", u"Cap", None))
+        self.label_63.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_64.setText(QCoreApplication.translate("MainWindow", u"Power", None))
+        self.label_64.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_65.setText(QCoreApplication.translate("MainWindow", u"Bars", None))
+        self.label_65.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.r3_cr_power.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_cr_power.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.r3_cr_power_checker.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_cr_cap.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_cr_cap.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.r3_cr_cap_checker.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_cr_bars.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_cr_bars.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.r3_cr_bar_checker.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.header_15.setText(QCoreApplication.translate("MainWindow", u"Your Goal R3 Ratio", None))
+        self.header_15.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"1", None))
+        self.r3_goal_edit_power.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.label_66.setText(QCoreApplication.translate("MainWindow", u"Power", None))
+        self.label_66.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_67.setText(QCoreApplication.translate("MainWindow", u"Cap", None))
+        self.label_67.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.r3_goal_edit_cap.setText(QCoreApplication.translate("MainWindow", u"40000", None))
+        self.label_68.setText(QCoreApplication.translate("MainWindow", u"Bars", None))
+        self.label_68.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.r3_goal_edit_bar.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.header_16.setText(QCoreApplication.translate("MainWindow", u"Your Base R3 Goals", None))
+        self.header_16.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"1", None))
+        self.r3_base_goal_power.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_base_goal_power.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.r3_base_goal_bar.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_base_goal_bar.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.r3_base_goal_cap.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_base_goal_cap.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.label_69.setText(QCoreApplication.translate("MainWindow", u"Bars", None))
+        self.label_69.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_70.setText(QCoreApplication.translate("MainWindow", u"Power", None))
+        self.label_70.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_71.setText(QCoreApplication.translate("MainWindow", u"Cap", None))
+        self.label_71.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.name_r3_amount_left_to_buy.setText(QCoreApplication.translate("MainWindow", u"Amount Left To Buy Until Your R3 Goal\n"
+"(Total Cost: 0 EXP)", None))
+        self.name_r3_amount_left_to_buy.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"1", None))
+        self.label_72.setText(QCoreApplication.translate("MainWindow", u"Power EXP Cost", None))
+        self.label_72.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.r3_exp_cost_cap.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_exp_cost_cap.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.r3_exp_cost_power.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_exp_cost_power.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.label_73.setText(QCoreApplication.translate("MainWindow", u"Power", None))
+        self.label_73.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_74.setText(QCoreApplication.translate("MainWindow", u"Cap EXP Cost", None))
+        self.label_74.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_75.setText(QCoreApplication.translate("MainWindow", u"Cap", None))
+        self.label_75.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_76.setText(QCoreApplication.translate("MainWindow", u"Bars", None))
+        self.label_76.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.label_77.setText(QCoreApplication.translate("MainWindow", u"Bars EXP Cost", None))
+        self.label_77.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
+        self.r3_exp_cost_bars.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_exp_cost_bars.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"3", None))
+        self.r3_amount_left_to_buy_bar.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_amount_left_to_buy_cap.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r3_amount_left_to_buy_power.setText(QCoreApplication.translate("MainWindow", u"0", None))
     # retranslateUi
 
