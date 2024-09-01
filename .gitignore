@@ -3,9 +3,9 @@ DELETE!!!!/test.py
 *test*.ui
 test.txt
 out.json
-src/ui_files/ngu_helper_ui.py
+ui/ngu_helper_ui.py
 DELETE!!!!
-src/ui_files/resources_qt_rc.py
+resources/resources_qt_rc.py
 
 
 

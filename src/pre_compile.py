@@ -10,7 +10,7 @@ def convert_all_ui_files():
             if file.endswith('.ui'):
                 ui_file = os.path.join(root, file)
                 py_file = os.path.join(root, file.replace('.ui', '_ui.py'))
-                command = f"pyside6-uic {ui_file} -o {py_file}"
+                command = f"pyside6-uic --absolute-imports {ui_file} -o {py_file}"
                 subprocess.run(command, shell=True)
                 print(f"Converted {ui_file} to {py_file}")
 
@@ -24,7 +24,6 @@ def convert_all_qrs_files():
                 py_file = os.path.join(root, file.replace('.qrc', '_rc.py'))
                 command = f"pyside6-rcc {ui_file} -o {py_file}"
                 subprocess.run(command, shell=True)
-                print(f"Converted {ui_file} to {py_file}")
 
 if __name__ == "__main__":
     convert_all_ui_files()

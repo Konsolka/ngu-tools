@@ -1,7 +1,6 @@
 from PySide6.QtCore import Slot, QTimer
 
-from src.logger import logger
-from src.ui_files.ngu_helper_ui import Ui_MainWindow
+from ui.ngu_helper_ui import Ui_MainWindow
 from PySide6.QtWidgets import QApplication, QMainWindow, QToolTip
 from handler import Handler
 from src.ratioz.ratioz import Ratios
@@ -66,6 +65,13 @@ class MainWindow(QMainWindow):
         self.ui.em_amount_left_to_buy_power.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
         self.ui.em_amount_left_to_buy_cap.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
         self.ui.em_amount_left_to_buy_bar.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+
+        # MAGIC : ENERGY
+        self.draw_me_ratio()
+        #   BUTTONS
+        self.ui.me_amount_left_to_buy_power.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+        self.ui.me_amount_left_to_buy_cap.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+        self.ui.me_amount_left_to_buy_bar.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
 
     def draw_energy_ratio(self):
         #   BASE
@@ -182,6 +188,8 @@ class MainWindow(QMainWindow):
         self.ui.em_amount_left_to_buy_power.setText(str(self.ratios.em_amount_left_to_buy_power))
         self.ui.em_amount_left_to_buy_cap.setText(str(self.ratios.em_amount_left_to_buy_cap))
         self.ui.em_amount_left_to_buy_bar.setText(str(self.ratios.em_amount_left_to_buy_bar))
+        self.ui.name_em_amount_left_to_buy.setText("Amount Left To Buy Until Your Energy:Magic Goal\n(Total Cost: {} EXP)".format(
+                int(self.ratios.em_amount_left_to_buy_sum)))
         #       EXP COST
         self.ui.em_exp_cost_power.setText('{} EXP'.format(self.ratios.em_exp_cost_power))
         self.ui.em_exp_cost_cap.setText('{} EXP'.format(self.ratios.em_exp_cost_cap))
@@ -193,6 +201,24 @@ class MainWindow(QMainWindow):
         self.ui.em_cr_cap_checker.setStyleSheet(return_color_for_cr(self.ratios.em_cr_cap))
         self.ui.em_cr_bar_checker.setText(return_c_for_cr(self.ratios.em_cr_bar))
         self.ui.em_cr_bar_checker.setStyleSheet(return_color_for_cr(self.ratios.em_cr_bar))
+
+    def draw_me_ratio(self):
+        #   GOAL M : E
+        self.ui.em_goal_em_ratio.setText(str(self.ratios.em_goal_em))
+        #   OPTIMAL MAGIC TO ENERGY AT RATIO
+        self.ui.me_optimal_energy_for_magic_power.setText(str(self.ratios.me_optimal_for_current_power))
+        self.ui.me_optimal_energy_for_magic_cap.setText(str(self.ratios.me_optimal_for_current_cap))
+        self.ui.me_optimal_energy_for_magic_bar.setText(str(self.ratios.me_optimal_for_current_bar))
+        #   AMOUNT LEFT TO BUY
+        self.ui.me_amount_left_to_buy_power.setText('{}'.format(self.ratios.me_amount_left_to_buy_power))
+        self.ui.me_amount_left_to_buy_cap.setText(str(self.ratios.me_amount_left_to_buy_cap))
+        self.ui.me_amount_left_to_buy_bar.setText('{}'.format(int(self.ratios.me_amount_left_to_buy_bar)))
+        self.ui.name_me_amount_left_to_buy.setText("Amount Left To Buy Until Your MAGIC:ENERGY Goal\n(Total Cost: {} EXP)".format(
+                int(self.ratios.me_amount_left_to_buy_sum)))
+        #       EXP COST
+        self.ui.me_exp_cost_power.setText('{} EXP'.format(self.ratios.me_exp_cost_power))
+        self.ui.me_exp_cost_cap.setText('{} EXP'.format(self.ratios.me_exp_cost_cap))
+        self.ui.me_exp_cost_bar.setText('{} EXP'.format(self.ratios.me_exp_cost_bar))
 
     def ratios_draw_all(self):
         self.draw_energy_ratio()
@@ -234,4 +260,6 @@ class MainWindow(QMainWindow):
         energy = float(self.ui.em_edit_goal_ratio_energy.text())
         magic = float(self.ui.em_edit_goal_ratio_magic.text())
         self.ratios.update_em(energy, magic)
+        self.ratios.update_me(energy, magic)
         self.draw_em_ratio()
+        self.draw_me_ratio()

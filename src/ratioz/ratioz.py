@@ -33,6 +33,7 @@ class Ratios:
         self.update_magic()
         self.update_r3()
         self.update_em()
+        self.update_me()
 
     def update_energy(self, energy_edit_power = 1, energy_edit_cap = 37500, energy_edit_bar = 1):
         #   CURRENT RATIO
@@ -132,14 +133,32 @@ class Ratios:
         self.em_cr_cap = self.stats_energy_cap / self.stats_magic_cap
         self.em_cr_bar = self.stats_energy_bar / self.stats_magic_bar
         #   OPTIMAL ENERGY FOR MAGIC AT RATIO
-        self.em_optimal_for_current_power = self.stats_energy_power * min(1, em_energy / self.em_cr_power)
+        self.em_optimal_for_current_power = self.stats_energy_power * max(1, self.em_goal_em / self.em_cr_power)
         self.em_optimal_for_current_cap = self.stats_energy_cap * max(1, self.em_goal_em / self.em_cr_cap)
         self.em_optimal_for_current_bar = self.stats_energy_bar * max(1, self.em_goal_em / self.em_cr_bar)
         #   AMOUNT LEFT TO BUY
         self.em_amount_left_to_buy_power = self.em_optimal_for_current_power - self.stats_energy_power
         self.em_amount_left_to_buy_cap = self.em_optimal_for_current_cap - self.stats_energy_cap
         self.em_amount_left_to_buy_bar = self.em_optimal_for_current_bar - self.stats_energy_bar
+        self.em_amount_left_to_buy_sum = self.em_amount_left_to_buy_power + self.em_amount_left_to_buy_cap + self.em_amount_left_to_buy_bar
         #   EXP COST
         self.em_exp_cost_power = self.em_amount_left_to_buy_power * 150
         self.em_exp_cost_cap = self.em_amount_left_to_buy_cap * 0.004
         self.em_exp_cost_bar = self.em_amount_left_to_buy_bar * 80
+
+    def update_me(self, em_energy = 6.0, em_magic = 2.0):
+        #   GOAL MAGIC ENERGY
+        self.em_goal_em = em_energy / em_magic
+        #   OPTIMAL ENERGY FOR MAGIC AT RATIO
+        self.me_optimal_for_current_power = round(ceiling_precise(self.stats_magic_power / min(1, self.em_goal_em / self.em_cr_power), 0.1), 2)
+        self.me_optimal_for_current_cap = round(ceiling_precise(self.stats_magic_cap / min(1, self.em_goal_em / self.em_cr_cap), 10000), 2)
+        self.me_optimal_for_current_bar = round(ceiling_precise(self.stats_magic_bar / min(1, self.em_goal_em / self.em_cr_bar), 1), 2)
+        #   AMOUNT LEFT TO BUY
+        self.me_amount_left_to_buy_power = self.me_optimal_for_current_power - self.stats_magic_power
+        self.me_amount_left_to_buy_cap = self.me_optimal_for_current_cap - self.stats_magic_cap
+        self.me_amount_left_to_buy_bar = self.me_optimal_for_current_bar - self.stats_magic_bar
+        self.me_amount_left_to_buy_sum = self.me_amount_left_to_buy_power + self.me_amount_left_to_buy_cap + self.me_amount_left_to_buy_bar
+        #   EXP COST
+        self.me_exp_cost_power = self.me_amount_left_to_buy_power * 150
+        self.me_exp_cost_cap = self.me_amount_left_to_buy_cap * 0.004
+        self.me_exp_cost_bar = self.me_amount_left_to_buy_bar * 80
