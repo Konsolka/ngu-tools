@@ -1722,7 +1722,7 @@ background-color:rgb(253, 242, 199);
           <item>
            <layout class="QGridLayout" name="gridLayout_6">
             <item row="1" column="0">
-             <widget class="QLineEdit" name="line_edit_magic_power">
+             <widget class="QLineEdit" name="magic_goal_edit_power">
               <property name="focusPolicy">
                <enum>Qt::FocusPolicy::StrongFocus</enum>
               </property>
@@ -1804,7 +1804,7 @@ background-color:rgb(253, 242, 199);
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="line_edit_magic_cap">
+             <widget class="QLineEdit" name="magic_goal_edit_cap">
               <property name="text">
                <string>40000</string>
               </property>
@@ -1839,7 +1839,7 @@ background-color:rgb(253, 242, 199);
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QLineEdit" name="line_edit_magic_bar">
+             <widget class="QLineEdit" name="magic_goal_edit_bar">
               <property name="text">
                <string>1</string>
               </property>

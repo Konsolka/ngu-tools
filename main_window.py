@@ -23,8 +23,30 @@ class MainWindow(QMainWindow):
         self.handler_ref = handler
         self.stats = Stats(handler)
         self.ratios = Ratios(self.stats)
+        #ENERGY
+        self.draw_energy_ratio()
+        #   TEXT INPUT
+        self.ui.energy_goal_edit_power.returnPressed.connect(self.update_energy_goal_edit)
+        self.ui.energy_goal_edit_cap.returnPressed.connect(self.update_energy_goal_edit)
+        self.ui.energy_goal_edit_bar.returnPressed.connect(self.update_energy_goal_edit)
+        #   BUTTONS
+        self.ui.energy_amount_left_to_buy_power.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+        self.ui.energy_amount_left_to_buy_cap.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+        self.ui.energy_amount_left_to_buy_bar.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
 
-    def init_energy_ratio(self):
+        #MAGIC
+        self.draw_magic_ratio()
+        #   TEXT INPUT
+        self.ui.magic_goal_edit_power.returnPressed.connect(self.update_magic_goal_edit)
+        self.ui.magic_goal_edit_cap.returnPressed.connect(self.update_magic_goal_edit)
+        self.ui.magic_goal_edit_bar.returnPressed.connect(self.update_magic_goal_edit)
+
+        #   BUTTONS
+        self.ui.magic_amount_left_to_buy_power.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+        self.ui.magic_amount_left_to_buy_cap.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+        self.ui.magic_amount_left_to_buy_bar.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+
+    def draw_energy_ratio(self):
         #   BASE
         self.ui.base_e_pow.setText(str(self.stats.energyPower))
         self.ui.base_e_cap.setText(str(self.stats.capEnergy))
@@ -42,10 +64,7 @@ class MainWindow(QMainWindow):
         self.ui.energy_amount_left_to_buy_power.setText(str(self.ratios.amount_left_to_buy_power))
         self.ui.energy_amount_left_to_buy_cap.setText(str(self.ratios.amount_left_to_buy_cap))
         self.ui.energy_amount_left_to_buy_bar.setText(str(self.ratios.amount_left_to_buy_bars))
-        #           BUTTONS
-        self.ui.energy_amount_left_to_buy_power.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
-        self.ui.energy_amount_left_to_buy_cap.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
-        self.ui.energy_amount_left_to_buy_bar.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
+
         #       PRICE FOR THAT
         self.ui.energy_exp_cost_power.setText("{} EXP".format(int(self.ratios.energy_exp_cost_power)))
         self.ui.energy_exp_cost_cap.setText("{} EXP".format(int(self.ratios.energy_exp_cost_cap)))
@@ -60,16 +79,9 @@ class MainWindow(QMainWindow):
         self.ui.energy_CR_cap_checker.setStyleSheet(return_color_for_cr(self.ratios.current_goal_energy_ratio_cap))
         self.ui.energy_CR_bar_checker.setText(return_c_for_cr(self.ratios.current_goal_energy_ratio_bar))
         self.ui.energy_CR_bar_checker.setStyleSheet(return_color_for_cr(self.ratios.current_goal_energy_ratio_bar))
-        #   TEXT INPUT
-        self.ui.energy_goal_edit_power.returnPressed.connect(self.update_energy_goal_edit_power)
-
-    @Slot()
-    def update_energy_goal_edit_power(self):
-        sender = self.sender()
-        print(sender.text())
 
 
-    def init_magic_ratio(self):
+    def draw_magic_ratio(self):
         #   BASE STAT
         self.ui.base_m_pow.setText(str(self.stats.magicPower))
         self.ui.base_m_cap.setText(str(self.stats.magicCap))
@@ -87,10 +99,6 @@ class MainWindow(QMainWindow):
         self.ui.magic_amount_left_to_buy_power.setText(str(self.ratios.magic_amount_left_to_buy_power))
         self.ui.magic_amount_left_to_buy_cap.setText(str(self.ratios.magic_amount_left_to_buy_cap))
         self.ui.magic_amount_left_to_buy_bar.setText(str(self.ratios.magic_amount_left_to_buy_bars))
-        #           BUTTONS
-        self.ui.magic_amount_left_to_buy_power.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
-        self.ui.magic_amount_left_to_buy_cap.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
-        self.ui.magic_amount_left_to_buy_bar.clicked.connect(self.copy_to_clipboard_amount_left_to_buy)
         #       PRICE FOR THAT
         self.ui.magic_exp_cost_power.setText("{} EXP".format(int(self.ratios.magic_exp_cost_power)))
         self.ui.magic_exp_cost_cap.setText("{} EXP".format(int(self.ratios.magic_exp_cost_cap)))
@@ -107,8 +115,8 @@ class MainWindow(QMainWindow):
         self.ui.magic_CR_bar_checker.setStyleSheet(return_color_for_cr(self.ratios.current_goal_magic_ratio_bar))
 
     def init_ratios(self):
-        self.init_energy_ratio()
-        self.init_magic_ratio()
+        self.draw_energy_ratio()
+        self.draw_magic_ratio()
 
     @Slot()
     def copy_to_clipboard_amount_left_to_buy(self):
@@ -116,3 +124,17 @@ class MainWindow(QMainWindow):
         text = str(int(float(sender.text())))
         clipboard = QApplication.clipboard()
         clipboard.setText(text)
+
+    def update_energy_goal_edit(self):
+        energy_power = float(self.ui.energy_goal_edit_power.text())
+        energy_cap = float(self.ui.energy_goal_edit_cap.text())
+        energy_bar = float(self.ui.energy_goal_edit_bar.text())
+        self.ratios.update_energy(energy_power, energy_cap, energy_bar)
+        self.draw_energy_ratio()
+
+    def update_magic_goal_edit(self):
+        magic_power = float(self.ui.magic_goal_edit_power.text())
+        magic_cap = float(self.ui.magic_goal_edit_cap.text())
+        magic_bar = float(self.ui.magic_goal_edit_bar.text())
+        self.ratios.update_magic(magic_power, magic_cap, magic_bar)
+        self.draw_magic_ratio()

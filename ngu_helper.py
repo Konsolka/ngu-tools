@@ -731,12 +731,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6 = QGridLayout()
         self.gridLayout_6.setObjectName(u"gridLayout_6")
-        self.line_edit_magic_power = QLineEdit(self.magic)
-        self.line_edit_magic_power.setObjectName(u"line_edit_magic_power")
-        self.line_edit_magic_power.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
-        self.line_edit_magic_power.setInputMethodHints(Qt.InputMethodHint.ImhNone)
+        self.magic_goal_edit_power = QLineEdit(self.magic)
+        self.magic_goal_edit_power.setObjectName(u"magic_goal_edit_power")
+        self.magic_goal_edit_power.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.magic_goal_edit_power.setInputMethodHints(Qt.InputMethodHint.ImhNone)
 
-        self.gridLayout_6.addWidget(self.line_edit_magic_power, 1, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.magic_goal_edit_power, 1, 0, 1, 1)
 
         self.label_13 = QLabel(self.magic)
         self.label_13.setObjectName(u"label_13")
@@ -759,10 +759,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.label_27, 0, 1, 1, 1)
 
-        self.line_edit_magic_cap = QLineEdit(self.magic)
-        self.line_edit_magic_cap.setObjectName(u"line_edit_magic_cap")
+        self.magic_goal_edit_cap = QLineEdit(self.magic)
+        self.magic_goal_edit_cap.setObjectName(u"magic_goal_edit_cap")
 
-        self.gridLayout_6.addWidget(self.line_edit_magic_cap, 1, 1, 1, 1)
+        self.gridLayout_6.addWidget(self.magic_goal_edit_cap, 1, 1, 1, 1)
 
         self.label_20 = QLabel(self.magic)
         self.label_20.setObjectName(u"label_20")
@@ -773,10 +773,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.label_20, 0, 2, 1, 1)
 
-        self.line_edit_magic_bar = QLineEdit(self.magic)
-        self.line_edit_magic_bar.setObjectName(u"line_edit_magic_bar")
+        self.magic_goal_edit_bar = QLineEdit(self.magic)
+        self.magic_goal_edit_bar.setObjectName(u"magic_goal_edit_bar")
 
-        self.gridLayout_6.addWidget(self.line_edit_magic_bar, 1, 2, 1, 1)
+        self.gridLayout_6.addWidget(self.magic_goal_edit_bar, 1, 2, 1, 1)
 
 
         self.magic_goal_ratio.addLayout(self.gridLayout_6)
@@ -1097,15 +1097,15 @@ class Ui_MainWindow(object):
         self.magic_CR_bar_checker.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.header_7.setText(QCoreApplication.translate("MainWindow", u"Your Goal Magic Ratio", None))
         self.header_7.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"1", None))
-        self.line_edit_magic_power.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.magic_goal_edit_power.setText(QCoreApplication.translate("MainWindow", u"1", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"Power", None))
         self.label_13.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Cap", None))
         self.label_27.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
-        self.line_edit_magic_cap.setText(QCoreApplication.translate("MainWindow", u"40000", None))
+        self.magic_goal_edit_cap.setText(QCoreApplication.translate("MainWindow", u"40000", None))
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Bars", None))
         self.label_20.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"2", None))
-        self.line_edit_magic_bar.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.magic_goal_edit_bar.setText(QCoreApplication.translate("MainWindow", u"1", None))
         self.header_8.setText(QCoreApplication.translate("MainWindow", u"Your Base Magic Goals", None))
         self.header_8.setProperty("type_of_header", QCoreApplication.translate("MainWindow", u"1", None))
         self.magic_base_goal_power.setText(QCoreApplication.translate("MainWindow", u"0", None))
