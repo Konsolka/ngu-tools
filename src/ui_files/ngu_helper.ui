@@ -3588,7 +3588,7 @@ background-color:rgb(253, 242, 199);
              </widget>
             </item>
             <item row="1" column="2">
-             <widget class="QLabel" name="em_edit_goal_em_ratio">
+             <widget class="QLabel" name="em_goal_em_ratio">
               <property name="minimumSize">
                <size>
                 <width>130</width>
@@ -3804,7 +3804,7 @@ background-color:rgb(253, 242, 199);
                <number>0</number>
               </property>
               <item>
-               <widget class="QLabel" name="em_cr_bars">
+               <widget class="QLabel" name="em_cr_bar">
                 <property name="minimumSize">
                  <size>
                   <width>105</width>
@@ -4162,7 +4162,7 @@ background-color:rgb(253, 242, 199);
              </widget>
             </item>
             <item row="3" column="2">
-             <widget class="QLabel" name="em_exp_cost_bars">
+             <widget class="QLabel" name="em_exp_cost_bar">
               <property name="minimumSize">
                <size>
                 <width>130</width>

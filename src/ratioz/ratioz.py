@@ -1,5 +1,6 @@
 import math
 
+from src.logger import logger
 from src.stats import Stats
 
 def ceiling_precise(number, significance=1.0):
@@ -24,10 +25,14 @@ class Ratios:
         self.stats_r3_base_power = stats.r3_base_power
         self.stats_r3_base_cap = stats.r3_base_cap
         self.stats_r3_base_bar = stats.r3_base_bar
-        
+
+        self.update_all()
+
+    def update_all(self):
         self.update_energy()
         self.update_magic()
         self.update_r3()
+        self.update_em()
 
     def update_energy(self, energy_edit_power = 1, energy_edit_cap = 37500, energy_edit_bar = 1):
         #   CURRENT RATIO
@@ -118,3 +123,23 @@ class Ratios:
         self.r3_exp_cost_bar = self.r3_amount_left_to_buy_bars * 8000000
         #   TOTAL EXP COST
         self.r3_amount_left_to_buy_sum = self.r3_exp_cost_power + self.r3_exp_cost_cap + self.r3_exp_cost_bar
+
+    def update_em(self, em_energy = 6.0, em_magic = 2.0):
+        #   GOAL ENERGY MAGIC
+        self.em_goal_em = em_energy / em_magic
+        #   CURRENT ENERGY:MAGIC RATIO
+        self.em_cr_power = self.stats_energy_power / self.stats_magic_power
+        self.em_cr_cap = self.stats_energy_cap / self.stats_magic_cap
+        self.em_cr_bar = self.stats_energy_bar / self.stats_magic_bar
+        #   OPTIMAL ENERGY FOR MAGIC AT RATIO
+        self.em_optimal_for_current_power = self.stats_energy_power * min(1, em_energy / self.em_cr_power)
+        self.em_optimal_for_current_cap = self.stats_energy_cap * max(1, self.em_goal_em / self.em_cr_cap)
+        self.em_optimal_for_current_bar = self.stats_energy_bar * max(1, self.em_goal_em / self.em_cr_bar)
+        #   AMOUNT LEFT TO BUY
+        self.em_amount_left_to_buy_power = self.em_optimal_for_current_power - self.stats_energy_power
+        self.em_amount_left_to_buy_cap = self.em_optimal_for_current_cap - self.stats_energy_cap
+        self.em_amount_left_to_buy_bar = self.em_optimal_for_current_bar - self.stats_energy_bar
+        #   EXP COST
+        self.em_exp_cost_power = self.em_amount_left_to_buy_power * 150
+        self.em_exp_cost_cap = self.em_amount_left_to_buy_cap * 0.004
+        self.em_exp_cost_bar = self.em_amount_left_to_buy_bar * 80

@@ -23,15 +23,10 @@ def read_savefile(file):
             logging.critical("Failed to find checksum")
             sys.exit(1)
         data = base64.b64decode(data[offset:])
-        ret = []
         des = Deserializer(data, data.index(b'PlayerData') - 6)
         des.parse()
         ret = des.get('PlayerData')
         return ret
-
-
-
-
 
 if __name__ == "__main__":
     logger.info("Starting the application")
@@ -40,7 +35,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow(handler)
-    window.init_ratios()
+    window.ratios_draw_all()
 
     window.show()
 
