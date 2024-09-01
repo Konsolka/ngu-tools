@@ -1,5 +1,5 @@
 .idea/
-*test*.py
+DELETE!!!!/test.py
 *test*.ui
 test.txt
 out.json
@@ -663,4 +663,4 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-/test2.txt
+/DELETE!!!!/test2.txt
