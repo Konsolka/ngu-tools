@@ -110,8 +110,6 @@ class MainWindow(QMainWindow):
         self.init_energy_ratio()
         self.init_magic_ratio()
 
-
-    #   ENERGY BUTTONS TO COPY
     @Slot()
     def copy_to_clipboard_amount_left_to_buy(self):
         sender = self.sender()

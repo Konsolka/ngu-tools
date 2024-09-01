@@ -53,24 +53,24 @@ class Ratios:
         #MAGIC
         #   CURRENT RATIO
         self.current_magic_ratio_power = 1.0
-        self.current_magic_ratio_cap = int(stats_magic_cap / stats_magic_cap)
-        self.current_magic_ratio_bars = round(stats_magic_bar / stats_magic_cap, 2)
+        self.current_magic_ratio_cap = int(stats_magic_cap / stats_magic_power)
+        self.current_magic_ratio_bars = round(stats_magic_bar / stats_magic_power, 2)
         #   GOAL RATIO
         self.magic_edit_power = 1
         self.magic_edit_cap = 40000
         self.magic_edit_bar = 1
         current_goal_magic_ratio_power = 1
-        self.current_goal_magic_ratio_cap = stats_magic_cap / self.magic_edit_cap / stats_magic_cap * self.magic_edit_power
-        self.current_goal_magic_ratio_bar = stats_magic_bar / self.magic_edit_bar / stats_magic_cap * self.magic_edit_power
+        self.current_goal_magic_ratio_cap = stats_magic_cap / self.magic_edit_cap / stats_magic_power * self.magic_edit_power
+        self.current_goal_magic_ratio_bar = stats_magic_bar / self.magic_edit_bar / stats_magic_power * self.magic_edit_power
         max_of_current_goal_magic_ratio = max(current_goal_magic_ratio_power, self.current_goal_magic_ratio_cap,
                                               self.current_goal_magic_ratio_bar)
         #   BASE GOAL
-        self.magic_base_goal_power = ceiling_precise(stats_magic_cap * max_of_current_goal_magic_ratio, 0.1)
+        self.magic_base_goal_power = ceiling_precise(stats_magic_power * max_of_current_goal_magic_ratio, 0.1)
         self.magic_base_goal_cap = ceiling_precise(
             self.magic_base_goal_power / self.magic_edit_power * self.magic_edit_cap, 250)
         self.magic_base_goal_bars = math.ceil(self.magic_base_goal_power / self.magic_edit_power * self.magic_edit_bar)
         #   AMOUNT LEFT TO BUY
-        self.magic_amount_left_to_buy_power = self.magic_base_goal_power - stats_magic_cap
+        self.magic_amount_left_to_buy_power = self.magic_base_goal_power - stats_magic_power
         self.magic_amount_left_to_buy_cap = self.magic_base_goal_cap - stats_magic_cap
         self.magic_amount_left_to_buy_bars = self.magic_base_goal_bars - stats_magic_bar
         #   EXP COST
