@@ -6,7 +6,7 @@ class Stats:
         #ENERGY
         self.energy_base_power = handler.handler.get("energyPower/value")
         self.energy_base_cap = handler.handler.get("capEnergy/value")
-        self.energy_base_bars = handler.handler.get("energyBars/value")
+        self.energy_base_bar = handler.handler.get("energyBars/value")
         #MAGIC
         self.magicCap = handler.handler.get("magic/value/capMagic/value")
         self.magicPower = handler.handler.get("magic/value/magicPower/value")

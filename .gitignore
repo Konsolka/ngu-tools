@@ -3,7 +3,7 @@ DELETE!!!!/test.py
 *test*.ui
 test.txt
 out.json
-ui/ngu_helper_ui.py
+ui/*.py
 DELETE!!!!
 resources/resources_qt_rc.py
 
