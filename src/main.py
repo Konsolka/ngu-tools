@@ -1,11 +1,11 @@
 import base64
-import logging
 import sys
+from logger import logger
 
 from PySide6.QtWidgets import QApplication
 
 from logger import logger, IS_ON_DEBUG
-from deserialize_dot_net import Deserializer
+from src.serialization.deserialize_dot_net import Deserializer
 
 from main_window import MainWindow
 
@@ -20,7 +20,7 @@ def read_savefile(file):
         try:
             offset = data.index(b'checksum') + 34
         except:
-            logging.critical("Failed to find checksum")
+            logger.critical("Failed to find checksum")
             sys.exit(1)
         data = base64.b64decode(data[offset:])
         des = Deserializer(data, data.index(b'PlayerData') - 6)

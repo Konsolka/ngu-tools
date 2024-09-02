@@ -1,7 +1,6 @@
 import json
-from cgitb import handler
 
-from src.deserialize_dot_net import DictQuery
+from src.serialization.deserialize_dot_net import DictQuery
 
 class Handler:
     def __init__(self, handler:DictQuery):

@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
         layout = QHBoxLayout()
 
         # layout.addWidget(self.ratios)
-        layout.addWidget(self.icopod)
+        layout.addWidget(self.ratios)
         self.ui.centralwidget.setLayout(layout)
 
     def switch_window(self):
