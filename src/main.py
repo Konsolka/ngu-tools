@@ -4,7 +4,7 @@ import sys
 
 from PySide6.QtWidgets import QApplication
 
-from logger import logger
+from logger import logger, IS_ON_DEBUG
 from deserialize_dot_net import Deserializer
 
 from main_window import MainWindow
@@ -31,6 +31,9 @@ def read_savefile(file):
 if __name__ == "__main__":
     logger.info("Starting the application")
     handler = Handler(read_savefile("test.txt"))
+
+    if IS_ON_DEBUG:
+        handler.json_print_handler()
 
     app = QApplication(sys.argv)
 

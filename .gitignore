@@ -6,7 +6,7 @@ out.json
 ui/*.py
 DELETE!!!!
 resources/resources_qt_rc.py
-
+output.json
 
 
 ### VisualStudio template

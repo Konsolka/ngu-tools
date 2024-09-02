@@ -1,5 +1,6 @@
 from PySide6.QtCore import QRect
 
+from src.icopod.window_icopod import WindowIcopod
 from src.ratioz.window_ratios import WindowRatios
 from ui.ngu_helper_ui import Ui_MainWindow
 from PySide6.QtWidgets import QMainWindow, QHBoxLayout
@@ -17,9 +18,11 @@ class MainWindow(QMainWindow):
 
         self.stats = Stats(handler)
         self.ratios = WindowRatios(self.stats)
+        self.icopod = WindowIcopod(self.stats)
         layout = QHBoxLayout()
 
-        layout.addWidget(self.ratios)
+        # layout.addWidget(self.ratios)
+        layout.addWidget(self.icopod)
         self.ui.centralwidget.setLayout(layout)
 
     def switch_window(self):
