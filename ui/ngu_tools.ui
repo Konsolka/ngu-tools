@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1447</width>
-    <height>1152</height>
+    <height>1145</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -91,7 +91,9 @@ QLabel[type_of_header=&quot;3&quot;]{
 background-color:rgb(253, 242, 199);
 }</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout"/>
+  </widget>
  </widget>
  <resources>
   <include location="../resources/resources_qt.qrc"/>
