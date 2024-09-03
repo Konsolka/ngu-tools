@@ -131,7 +131,6 @@ class Ratios:
         self.er3_optimal_for_current_cap = self.stats_r3_base_cap / max(1, self.er3_goal_er3 / self.er3_cr_cap)
         self.er3_optimal_for_current_bar = self.stats_r3_base_bar / max(1, self.er3_goal_er3 / self.er3_cr_bar)
         #   AMOUNT LEFT TO BUY
-        logger.info(f"st_r3_base_power: {self.er3_optimal_for_current_power} - {self.stats_r3_base_power}")
         self.er3_amount_left_to_buy_power = 0 if self.er3_optimal_for_current_power - self.stats_r3_base_power < 1.0 else self.er3_optimal_for_current_power - self.stats_r3_base_power
         self.er3_amount_left_to_buy_cap = self.er3_optimal_for_current_cap - self.stats_r3_base_cap
         self.er3_amount_left_to_buy_bar = self.er3_optimal_for_current_bar - self.stats_r3_base_bar
