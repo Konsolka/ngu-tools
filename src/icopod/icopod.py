@@ -1,2 +1,62 @@
-itopod_perk_name = ['The Newbie Energy Perk', 'The Newbie Magic Perk', 'The Newbie Adventure Perk', 'The Newbie Drop Chance Perk', 'The Newbie Stat Perk', 'Stat Boost For Rich Perks I', 'Generic Energy Power Perk I', 'Generic Energy Bar Perk I', 'Generic Energy Cap Perk I', 'Generic Magic Power Perk I', 'Generic Magic Bar Perk I', 'Generic Magic Cap Perk I', 'Boosted Boosts I', 'Faster NGU Energy', 'Faster NGU Magic', 'Double Basic Training', 'Quicker Fruit of Power ОІ Bonus Activation', 'Quicker Fruit of Numbers Bonus Activation', 'Instant Advanced Training Levels', '"Fruit of Knowledge sucks 1/5"', '"Fruit of Knowledge STILL sucks 1/5"', "Five O'Clock Shadow", 'Wandoos Lover', 'Golden Showers', 'I want your seeds ;)', "The Loot Goblin's Blessing", 'Improved Cube Boosting!', "Daycare Kitty's Blessing I", "Daycare Kitty's Blessing II", "You'll Really Want This", 'What a Crappy Perk', 'More Inventory Space I', 'More Inventory Space II', 'Boosted Boosts II', 'Bonus Titan EXP!', 'Bonus Boss EXP!', 'Adv. Training Level Bank I', 'Adv. Training Level Bank II', 'Adv. Training Level Bank III', 'Adv. Training Level Bank IV', 'Adv. Training Level Bank V', 'Time Machine Level Bank I', 'Time Machine Level Bank II', 'Time Machine Level Bank III', 'Time Machine Level Bank IV', 'Time Machine Level Bank V', 'Beard Temp Level Bank I', 'Beard Temp Level Bank II', 'Beard Temp Level Bank III', 'Beard Temp Level Bank IV', 'Beard Temp Level Bank V', "The First Harvest's The Best", 'A Digger Slot!', 'Ooh, Another Digger Slot!', 'Stat Boost For Rich Perks II', 'Adventure Boost For Rich Perks I', 'MacGuffin Daycare!', 'Generic Energy Power Perk II', 'Generic Energy Bar Perk II', 'Generic Energy Cap Perk II', 'Generic Magic Power Perk II', 'Generic Magic Bar Perk II', 'Generic Magic Cap Perk II', 'Faster NGU Energy II', 'Faster NGU Magic II', 'Improved MacGuffin Drops I', 'A MacGuffin Slot!', 'Another MacGuffin Slot!', 'MacGuffin ITOPOD Drops!', 'Improved MacGuffin ITOPOD Drops I', 'Improved MacGuffin ITOPOD Drops II', 'Improved MacGuffin ITOPOD Drops III', 'Blood MacGuffin О± Spell!', 'Blood MacGuffin ОІ Spell!', 'Generic Energy Power Perk III', 'Generic Energy Bar Perk III', 'Generic Energy Cap Perk III', 'Generic Magic Power Perk III', 'Generic Magic Bar Perk III', 'Generic Magic Cap Perk III', 'Faster NGU Energy III', 'Faster NGU Magic III', 'Stat Boost For Rich Perks III', 'Adventure Boost For Rich Perks II', 'Iron Pill Also Sucks 1/5', 'Iron Pill Still Sucks 1/5', 'Daycare Slot! c:', 'Not So Minor Anymore', 'Another MacGuffin Slot!', 'Better QP Rewards!', 'Improved Quest Looting', 'Advanced Gooder Idle Questing', 'Even More Advanced Gooder Idle Questing', 'Spawn Faster Damnit', 'The Fibonacci Perk', 'Generic Resource 3 Power Perk I', 'Generic Resource 3 Bar Perk I', 'Generic Resource 3 Cap Perk I', 'Generic Resource 3 Power Perk II', 'Generic Resource 3 Bar Perk II', 'Generic Resource 3 Cap Perk II', 'Generic Resource 3 Power Perk III', 'Generic Resource 3 Bar Perk III', 'Generic Resource 3 Cap Perk III', 'Truly Idle Questing', 'Gooder Idle Questing!', 'Another Gooder Idle Questing!', 'Boosted Boosts III', 'Faster wishes I', 'Minimum Wish Time Reduction I', 'Minimum Wish Time Reduction II', 'An Inventory Merge Slot', 'Another Inventory Merge Slot', 'Adventure Hack Milestone Reducer I', 'Blood Hack Milestone Reducer I', 'Daycare Hack Milestone Reducer I', 'Generic Energy Power Perk IV', 'Generic Energy Bar Perk IV', 'Generic Energy Cap Perk IV', 'Generic Magic Power Perk IV', 'Generic Magic Bar Perk IV', 'Generic Magic Cap Perk IV', 'Generic Resource 3 Power Perk IV', 'Generic Resource 3 Bar Perk IV', 'Generic Resource 3 Cap Perk IV']
+import math
+from math import floor
+
+from src.stats import Stats
+from src.utils.ceiling_presice import ceiling_precise
+
+
+class ICOPOD:
+    def __init__(self, stats: Stats):
+        self.stats = stats
+        self.power = 1
+        self.toughness = 1
+        self.regen = 1
+        self.hp = 1
+        self.oneshot = 0
+        self.final_pp_mod = 1   # 100%
+        self.little_blue_pill_stack = 0
+        self.kills_after_time_spent = 0     # TODO: calculate
+        self.time_spent = 30                # In minutes
+        self.time_to_respawn = 4.0
+
+        self.ngu_level_magic_exp = stats.ngu_magic_exp
+        self.ngu_level_energy_pp = stats.ngu_energy_pp
+        self.update_floor_oneshot()
+        self.update_max_floor()
+        self.process_gains()
+
+
+    def update_floor_oneshot(self):
+        divisor = 637.5 / (1.25 if self.stats.spooky_set_bonus else 1)
+        log_value = math.floor(math.log(self.power / divisor, 1.05))
+        self.oneshot = max(0, math.floor(log_value))
+        self.icopod_tier = 1 + floor(self.oneshot / 50)
+        self.kills_per_ap_exp = max(20,40 - self.icopod_tier)
+
+    def update_max_floor(self):
+        divisor = 1.5 if self.stats.spooky_set_bonus else 1.2
+        pow_floor = round(max(0.0, math.log((self.power * divisor / 10), 1.05) - 5))
+        toughness_floor = round(max(0.0, math.log(self.toughness/10,1.05)))
+        hp_floor = round(max(0.0, math.log(self.hp / 600, 1.05)))
+        regen_floor = round(max(0.0, math.log(self.regen/10, 1.05)))
+        avg_4 = round((pow_floor + toughness_floor + pow_floor + toughness_floor + hp_floor + regen_floor) / 6)
+        self.max_floor = max(0, avg_4, self.oneshot)
+
+    def process_gains(self):
+        time_to_kill = (
+            ceiling_precise(self.time_to_respawn, 0.02)
+            + (0.8 if self.stats.maxed_sets['red_liquid'] else 1.0)
+        )
+
+        self.kills_after_time_spent = math.floor((self.time_spent * 60) / time_to_kill)
+        gpp_per_kill_ = (
+            ((700 if self.stats.is_evil else 200) + self.oneshot)
+            * (12 if self.stats.maxed_sets['green_heart'] else 10 / 10)
+            * (11 if self.stats.maxed_sets['pissed_off_key'] else 10 / 10)
+            * (11 if self.stats.maxed_sets['ppp'] else 10 / 10)
+            * self.final_pp_mod
+                        )
+        gpp_per_kill = math.floor(gpp_per_kill_)
+        bonus_gpp_per_kill = math.floor(gpp_per_kill_ * 2.2 if self.stats.maxed_sets['blue_heart'] else 2) - gpp_per_kill
+        self.max_kills_per_pp = math.ceil(1000000 / (gpp_per_kill + bonus_gpp_per_kill if self.little_blue_pill_stack >= self.kills_after_time_spent else  gpp_per_kill))
 

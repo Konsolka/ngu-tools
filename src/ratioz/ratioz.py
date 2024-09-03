@@ -3,15 +3,8 @@ from decimal import Decimal
 
 from src.logger import logger
 from src.stats import Stats
+from src.utils.ceiling_presice import ceiling_precise
 
-def ceiling_precise(number, significance=1.0):
-    if significance == 0:
-        raise ValueError("Significance cannot be zero.")
-
-    # Significance must be positive
-    significance = abs(significance)
-
-    return math.ceil(number / significance) * significance
 
 class Ratios:
     def __init__(self, stats:Stats):
