@@ -23,3 +23,5 @@ class Stats:
         self.regen = handler.handler.get("adventure/value/regen/value")
         self.hp = handler.handler.get("adventure/value/curHP/value")
         self.highest_level = handler.handler.get("adventure/value/highestItopodLevel/value")
+
+        self.ngu_magic_exp = handler.handler.get("NGU/value/magicSkills/value/_items")['value'][1]

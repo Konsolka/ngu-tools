@@ -14,10 +14,5 @@ class WindowIcopod(QWidget):
         self.ui.setupUi(self)
         self.stats = stats
         self.ratios = Ratios(self.stats)
-        self.update_stats()
 
-    def update_stats(self):
-        self.ui.power.setText(str(self.stats.power))
-        self.ui.toughness.setText(str(self.stats.toughness))
-        self.ui.hp.setText(str(self.stats.hp))
-        self.ui.hp_regen.setText(str(self.stats.regen))
+    # def update_stats(self):

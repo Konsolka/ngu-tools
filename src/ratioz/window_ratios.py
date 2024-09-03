@@ -93,9 +93,9 @@ class WindowRatios(QWidget):
         getattr(self.ui, f"{type_}_amount_left_to_buy_bar").setText(
             str(getattr(self.ratios, f"{type_}_amount_left_to_buy_bar")))
         #       PRICE FOR THAT
-        getattr(self.ui, f"{type_}_exp_cost_power").setText(str(getattr(self.ratios, f"{type_}_exp_cost_power")))
-        getattr(self.ui, f"{type_}_exp_cost_cap").setText(str(getattr(self.ratios, f"{type_}_exp_cost_cap")))
-        getattr(self.ui, f"{type_}_exp_cost_bar").setText(str(getattr(self.ratios, f"{type_}_exp_cost_bar")))
+        getattr(self.ui, f"{type_}_exp_cost_power").setText("{} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_power")))
+        getattr(self.ui, f"{type_}_exp_cost_cap").setText("{} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_cap")))
+        getattr(self.ui, f"{type_}_exp_cost_bar").setText("{} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_bar")))
         getattr(self.ui, f"{type_}_amount_left_to_buy_name").setText(
             "Amount Left To Buy Until Your {} Goal\n(Total Cost: {} EXP)".format(
                 type_,
@@ -106,9 +106,9 @@ class WindowRatios(QWidget):
         getattr(self.ui, f"{type_}_cr_power_checker").setText('~')
         getattr(self.ui, f"{type_}_cr_power_checker").setStyleSheet(return_color_for_cr(1))
         getattr(self.ui, f"{type_}_cr_cap_checker").setText(
-            return_c_for_cr(getattr(self.ratios, f"{type_}_current_ratio_cap")))
+            return_c_for_cr(getattr(self.ratios, f"{type_}_current_ratio_cap") / getattr(self.ratios, f"{type_}_edit_cap")))
         getattr(self.ui, f"{type_}_cr_cap_checker").setStyleSheet(
-            return_color_for_cr(getattr(self.ratios, f"{type_}_current_ratio_cap")))
+            return_color_for_cr(getattr(self.ratios, f"{type_}_current_ratio_cap") / getattr(self.ratios, f"{type_}_edit_cap")))
         getattr(self.ui, f"{type_}_cr_bar_checker").setText(
             return_c_for_cr(getattr(self.ratios, f"{type_}_current_ratio_bar")))
         getattr(self.ui, f"{type_}_cr_bar_checker").setStyleSheet(
