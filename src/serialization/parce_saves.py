@@ -1,7 +1,7 @@
 import base64
 import sys
 from src.serialization.deserialize_dot_net import Deserializer
-from src.logger import logger as LOG
+from src.utils.logger import logger as LOG
 
 if sys.version_info < (3, 7):
     # We depend on dicts being ordered which requires python 3.7

@@ -59,4 +59,17 @@ class ICOPOD:
         gpp_per_kill = math.floor(gpp_per_kill_)
         bonus_gpp_per_kill = math.floor(gpp_per_kill_ * 2.2 if self.stats.maxed_sets['blue_heart'] else 2) - gpp_per_kill
         self.max_kills_per_pp = math.ceil(1000000 / (gpp_per_kill + bonus_gpp_per_kill if self.little_blue_pill_stack >= self.kills_after_time_spent else  gpp_per_kill))
+        self.time_to_get_one_pp = self.max_kills_per_pp * time_to_kill / 60
+        self.time_to_get_one_ap_exp = self.kills_per_ap_exp * time_to_kill
+        self.time_to_get_one_poop = 9000 * time_to_kill / 60
+        kills_per_mcguf = (5000
+                * (0.8 if self.stats.ictpod_perk_dict['Improved MacGuffin ITOPOD Drops I'] == 1 else 1)
+                * (0.75 if self.stats.ictpod_perk_dict['Improved MacGuffin ITOPOD Drops II'] == 1 else 1)
+                * (0.75 if self.stats.ictpod_perk_dict['Improved MacGuffin ITOPOD Drops III'] == 1 else 1)
+                * (0.9 if self.stats.maxed_sets['purple_heart'] else 1)
+        )
+        print(kills_per_mcguf)
+        self.time_to_get_one_mcguf = time_to_kill * kills_per_mcguf / 60
+        self.time_to_get_one_boost = time_to_kill / 0.16
+
 

@@ -1,7 +1,6 @@
 import math
-from decimal import Decimal
 
-from src.logger import logger
+from src.utils.logger import logger
 from src.stats import Stats
 from src.utils.ceiling_presice import ceiling_precise
 
@@ -23,103 +22,49 @@ class Ratios:
         self.update_all()
 
     def update_all(self):
-        self.update_energy()
-        self.update_magic()
-        self.update_r3()
+        self.update_type(1, 37500, 1, 'energy')
+        self.update_type(1, 40000, 1, 'magic')
+        self.update_type(1, 40000, 1, 'r3')
         self.update_em()
         self.update_me()
         self.update_er3()
 
-    def update_energy(self, energy_edit_power = 1, energy_edit_cap = 37500, energy_edit_bar = 1):
+    def update_type(self, power, cap, bar, type_):
         #   CURRENT RATIO
-
-        self.energy_current_ratio_power = 1.0
-        self.energy_current_ratio_cap = int(self.stats_energy_base_cap / self.stats_energy_base_power)
-        self.energy_current_ratio_bar = round(self.stats_energy_base_bar / self.stats_energy_base_power, 2)
+        setattr(self, f'{type_}_current_ratio_power', 1.0)
+        setattr(self, f'{type_}_current_ratio_cap', int(getattr(self, f'stats_{type_}_base_cap') / getattr(self, f'stats_{type_}_base_power')))
+        setattr(self, f'{type_}_current_ratio_bar', round(getattr(self, f'stats_{type_}_base_bar') / getattr(self, f'stats_{type_}_base_power'), 2))
         #   GOAL RATIO / TEXT INPUT
-        self.energy_edit_power = energy_edit_power
-        self.energy_edit_cap = energy_edit_cap
-        self.energy_edit_bar = energy_edit_bar
-        current_goal_energy_ratio_power = 1
-        self.energy_current_goal_ratio_cap = self.stats_energy_base_cap / self.energy_edit_cap / self.stats_energy_base_power * self.energy_edit_power
-        self.energy_current_goal_ratio_bar = self.stats_energy_base_bar / self.energy_edit_bar / self.stats_energy_base_power * self.energy_edit_power
-        max_of_current_goal_energy_ratio = max(current_goal_energy_ratio_power, self.energy_current_goal_ratio_cap,
-                                                    self.energy_current_goal_ratio_bar)
+        setattr(self, f'{type_}_edit_power', power)
+        setattr(self, f'{type_}_edit_cap', cap)
+        setattr(self, f'{type_}_edit_bar', bar)
+        current_goal_ratio_power = 1
+        current_goal_ratio_cap = getattr(self, f'stats_{type_}_base_cap') / getattr(self, f'{type_}_edit_cap') / getattr(self, f'stats_{type_}_base_power') * getattr(self, f'{type_}_edit_power')
+        current_goal_ratio_bar = getattr(self, f'stats_{type_}_base_bar') / getattr(self, f'{type_}_edit_bar') / getattr(self, f'stats_{type_}_base_power') * getattr(self, f'{type_}_edit_power')
+        max_of_current_goal_ratio = max(current_goal_ratio_power, current_goal_ratio_cap, current_goal_ratio_bar)
         #   BASE GOAL
-        self.energy_base_goal_power = ceiling_precise(self.stats_energy_base_power * max_of_current_goal_energy_ratio,
-                                                      0.1)
-        self.energy_base_goal_cap = ceiling_precise(self.energy_base_goal_power / self.energy_edit_power * self.energy_edit_cap, 250)
-        self.energy_base_goal_bar = math.ceil(self.energy_base_goal_power / self.energy_edit_power * self.energy_edit_bar)
-        #   AMOUNT LEFT TO BUY
-        self.energy_amount_left_to_buy_power = self.energy_base_goal_power - self.stats_energy_base_power
-        self.energy_amount_left_to_buy_cap = self.energy_base_goal_cap - self.stats_energy_base_cap
-        self.energy_amount_left_to_buy_bar = self.energy_base_goal_bar - self.stats_energy_base_bar
-        #   EXP COST
-        self.energy_exp_cost_power = self.energy_amount_left_to_buy_power * 150
-        self.energy_exp_cost_cap = self.energy_amount_left_to_buy_cap * 0.004
-        self.energy_exp_cost_bar = self.energy_amount_left_to_buy_bar * 80
+        setattr(self, f'{type_}_base_goal_power', ceiling_precise(getattr(self, f'stats_{type_}_base_power') * max_of_current_goal_ratio, 0.01))
+        setattr(self, f'{type_}_base_goal_cap', ceiling_precise(getattr(self, f'{type_}_base_goal_power') / getattr(self, f'{type_}_edit_power') * getattr(self, f'{type_}_edit_cap'), 250))
+        setattr(self, f'{type_}_base_goal_bar', math.ceil(getattr(self, f'{type_}_base_goal_power') / getattr(self, f'{type_}_edit_power') * getattr(self, f'{type_}_edit_bar')))
+        # AMOUNT LEFT TO BUY
+        setattr(self, f'{type_}_amount_left_to_buy_power', getattr(self, f'stats_{type_}_base_power') - getattr(self, f'{type_}_base_goal_power'))
+        setattr(self, f'{type_}_amount_left_to_buy_cap', getattr(self, f'stats_{type_}_base_cap') - getattr(self, f'{type_}_base_goal_cap'))
+        setattr(self, f'{type_}_amount_left_to_buy_bar', getattr(self, f'stats_{type_}_base_bar') - getattr(self, f'{type_}_base_goal_bar'))
+        # EXP COST
+        exp_cost_value = self.type_exp_cost(type_)
+        setattr(self, f'{type_}_exp_cost_power', getattr(self, f'{type_}_amount_left_to_buy_power') * exp_cost_value[0])
+        setattr(self, f'{type_}_exp_cost_cap', getattr(self, f'{type_}_amount_left_to_buy_cap') * exp_cost_value[1])
+        setattr(self, f'{type_}_exp_cost_bar', getattr(self, f'{type_}_amount_left_to_buy_bar') * exp_cost_value[2])
         #   TOTAL EXP COST
-        self.energy_amount_left_to_buy_sum = self.energy_exp_cost_bar + self.energy_exp_cost_power + self.energy_exp_cost_cap
+        setattr(self, f'{type_}_amount_left_to_buy_sum', getattr(self, f'{type_}_exp_cost_bar') + getattr(self, f'{type_}_exp_cost_power') + getattr(self, f'{type_}_exp_cost_cap'))
 
-    def update_magic(self, magic_edit_power = 1, magic_edit_cap = 40000, magic_edit_bar = 1):
-        #   CURRENT RATIO
-        self.magic_current_ratio_power = 1.0
-        self.magic_current_ratio_cap = int(self.stats_magic_base_cap / self.stats_magic_base_power)
-        self.magic_current_ratio_bar = round(self.stats_magic_base_bar / self.stats_magic_base_power, 2)
-        #   GOAL RATIO
-        self.magic_edit_power = magic_edit_power
-        self.magic_edit_cap = magic_edit_cap
-        self.magic_edit_bar = magic_edit_bar
-        current_goal_magic_ratio_power = 1
-        self.magic_current_goal_ratio_cap = self.stats_magic_base_cap / self.magic_edit_cap / self.stats_magic_base_power * self.magic_edit_power
-        self.magic_current_goal_ratio_bar = self.stats_magic_base_bar / self.magic_edit_bar / self.stats_magic_base_power * self.magic_edit_power
-        max_of_current_goal_magic_ratio = max(current_goal_magic_ratio_power, self.magic_current_goal_ratio_cap,
-                                              self.magic_current_goal_ratio_bar)
-        #   BASE GOAL
-        self.magic_base_goal_power = ceiling_precise(self.stats_magic_base_power * max_of_current_goal_magic_ratio, 0.1)
-        self.magic_base_goal_cap = ceiling_precise(
-            self.magic_base_goal_power / self.magic_edit_power * self.magic_edit_cap, 250)
-        self.magic_base_goal_bar = math.ceil(self.magic_base_goal_power / self.magic_edit_power * self.magic_edit_bar)
-        #   AMOUNT LEFT TO BUY
-        self.magic_amount_left_to_buy_power = self.magic_base_goal_power - self.stats_magic_base_power
-        self.magic_amount_left_to_buy_cap = self.magic_base_goal_cap - self.stats_magic_base_cap
-        self.magic_amount_left_to_buy_bar = self.magic_base_goal_bar - self.stats_magic_base_bar
-        #   EXP COST
-        self.magic_exp_cost_power = self.magic_amount_left_to_buy_power * 450
-        self.magic_exp_cost_cap = self.magic_amount_left_to_buy_cap * 0.012
-        self.magic_exp_cost_bar = self.magic_amount_left_to_buy_bar * 240
-        #   TOTAL EXP COST
-        self.magic_amount_left_to_buy_sum = self.magic_exp_cost_bar + self.magic_exp_cost_power + self.magic_exp_cost_cap
-
-    def update_r3(self, r3_edit_power = 1, r3_edit_cap = 40000, r3_edit_bar = 1):
-        #   CURRENT RATIO
-        self.r3_current_ratio_power = 1.0
-        self.r3_current_ratio_cap = int(self.stats_r3_base_cap / self.stats_r3_base_power)
-        self.r3_current_ratio_bar = round(self.stats_r3_base_bar / self.stats_r3_base_power, 2)
-        #   GOAL RATIO / TEXT INPUT
-        self.r3_edit_power = r3_edit_power
-        self.r3_edit_cap = r3_edit_cap
-        self.r3_edit_bar = r3_edit_bar
-        r3_current_goal_ratio_power = 1
-        self.r3_current_goal_ratio_cap = self.stats_r3_base_cap / self.r3_edit_cap / self.stats_r3_base_power * self.r3_edit_power
-        self.r3_current_goal_ratio_bar = self.stats_r3_base_bar / self.r3_edit_bar / self.stats_r3_base_power * self.r3_edit_power
-        self.r3_max_of_current_goal_ratio = max(r3_current_goal_ratio_power, self.r3_current_goal_ratio_cap,
-                                                    self.r3_current_goal_ratio_bar)
-        #   BASE GOAL
-        self.r3_base_goal_power = ceiling_precise(self.stats_r3_base_power * self.r3_max_of_current_goal_ratio,
-                                                      0.1)
-        self.r3_base_goal_cap = ceiling_precise(self.r3_base_goal_power / self.r3_edit_power * self.r3_edit_cap, 250)
-        self.r3_base_goal_bar = math.ceil(self.r3_base_goal_power / self.r3_edit_power * self.r3_edit_bar)
-        #   AMOUNT LEFT TO BUY
-        self.r3_amount_left_to_buy_power = self.r3_base_goal_power - self.stats_r3_base_power
-        self.r3_amount_left_to_buy_cap = self.r3_base_goal_cap - self.stats_r3_base_cap
-        self.r3_amount_left_to_buy_bar = self.r3_base_goal_bar - self.stats_r3_base_bar
-        #   EXP COST
-        self.r3_exp_cost_power = self.r3_amount_left_to_buy_power * 15000000
-        self.r3_exp_cost_cap = self.r3_amount_left_to_buy_cap * 400
-        self.r3_exp_cost_bar = self.r3_amount_left_to_buy_bar * 8000000
-        #   TOTAL EXP COST
-        self.r3_amount_left_to_buy_sum = self.r3_exp_cost_power + self.r3_exp_cost_cap + self.r3_exp_cost_bar
+    def type_exp_cost(self, type_):
+        if type_ == 'energy':
+            return [150, 0.004, 80]
+        elif type_ == 'magic':
+            return [450, 0.012, 240]
+        elif type_ == 'r3':
+            return [15000000, 400, 8000000]
 
     def update_em(self, em_energy = 6.0, em_magic = 2.0):
         #   GOAL ENERGY MAGIC

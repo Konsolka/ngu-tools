@@ -1,10 +1,9 @@
 import base64
 import sys
-from logger import logger
 
 from PySide6.QtWidgets import QApplication
 
-from logger import logger, IS_ON_DEBUG
+from src.utils.logger import logger, IS_ON_DEBUG
 from src.serialization.deserialize_dot_net import Deserializer
 
 from main_window import MainWindow

@@ -17,6 +17,7 @@ sets = {
     'blue_heart': [196],
     'red_liquid': [93],
     'ppp': [231, 232, 233, 234, 235, 236],
+    'purple_heart': [212],
 
 }
 
@@ -25,7 +26,6 @@ class Stats:
         self.process_ratios_stats(handler)
         self.maxed_sets = self.process_sets(handler)
         self.is_evil = False
-        # RATIOS
         #ITOPOD
         self.ictpod_perk_dict = dict(zip(itopod_perk_name, handler.handler.get("adventure/value/itopod/value/perkLevel/value")['_items']['value']))
         self.ictpod_highest_level = handler.handler.get("adventure/value/highestItopodLevel/value")

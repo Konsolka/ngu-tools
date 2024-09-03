@@ -6,23 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1048</width>
-    <height>808</height>
+    <width>1035</width>
+    <height>797</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QLabel {
+forn-size: 11pt;
+font-family: &quot;Comfortaa&quot;,sans-serif;
+}
+
+QLabel#window_title{
+font-family: &quot;Monoton&quot;, sans-serif;
+font-size: 36pt;
+}
+QLabe[header=&quot;1&quot;]{
+font-family: &quot;Nunito&quot;, sans-serif;
+font-size:  14pt;
+}</string>
   </property>
   <widget class="QLabel" name="window_title">
    <property name="geometry">
     <rect>
-     <x>480</x>
+     <x>300</x>
      <y>20</y>
-     <width>311</width>
-     <height>51</height>
+     <width>331</width>
+     <height>58</height>
     </rect>
    </property>
    <property name="text">
@@ -40,12 +52,15 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_6">
     <item>
-     <widget class="QLabel" name="label_34">
+     <widget class="QLabel" name="h1_4">
       <property name="text">
        <string>Enemy Stat Checker</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="header" stdset="0">
+       <string>1</string>
       </property>
      </widget>
     </item>
@@ -165,7 +180,7 @@ Oneshot Floor</string>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>400</x>
@@ -176,12 +191,15 @@ Oneshot Floor</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
-     <widget class="QLabel" name="label_8">
+     <widget class="QLabel" name="h1_2">
       <property name="text">
        <string>Stats</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="header" stdset="0">
+       <string>1</string>
       </property>
      </widget>
     </item>
@@ -285,7 +303,7 @@ Oneshot Floor</string>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -296,7 +314,7 @@ Oneshot Floor</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="h1">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -309,14 +327,57 @@ Oneshot Floor</string>
       <property name="alignment">
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
+      <property name="header" stdset="0">
+       <string>1</string>
+      </property>
      </widget>
     </item>
     <item>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="8" column="0">
-       <widget class="QLabel" name="label_21">
+       <widget class="QLabel" name="mcguf_per_time">
         <property name="text">
-         <string>How Much EXP Per? :O</string>
+         <string>MacGuffins Per? :O</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="pp_per_time">
+        <property name="text">
+         <string>PP Per? :O</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>I.T.O.P.O.D. Tier</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>Max Kills Needed Per PP</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="edit_minutes_spent">
+        <property name="text">
+         <string>30</string>
         </property>
        </widget>
       </item>
@@ -325,19 +386,25 @@ Oneshot Floor</string>
         <property name="text">
          <string>Kills per AP and EXP</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="9" column="1">
+      <item row="8" column="1">
        <widget class="QLabel" name="mcguf_per">
         <property name="text">
          <string>0</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="1">
-       <widget class="QLabel" name="exp_per">
+      <item row="9" column="0">
+       <widget class="QLabel" name="boost_per_time">
         <property name="text">
-         <string>0</string>
+         <string>Boost Per? :O </string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -345,6 +412,43 @@ Oneshot Floor</string>
        <widget class="QLabel" name="label_10">
         <property name="text">
          <string>Kills After Time Spent</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLabel" name="poop_per">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="ap_exp_per_time">
+        <property name="text">
+         <string>AP/EXP Per? :O</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QLabel" name="ap_exp_per">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="poop_per_time">
+        <property name="text">
+         <string>Poop Per? :O</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -355,15 +459,8 @@ Oneshot Floor</string>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_17">
-        <property name="text">
-         <string>How Much PP Per? :O</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QLabel" name="poop_per">
+      <item row="5" column="1">
+       <widget class="QLabel" name="pp_per">
         <property name="text">
          <string>0</string>
         </property>
@@ -376,66 +473,10 @@ Oneshot Floor</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>I.T.O.P.O.D. Tier</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLabel" name="pp_per">
-        <property name="text">
-         <string>0</string>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="1">
        <widget class="QLabel" name="kills_aftes_time_spent">
         <property name="text">
          <string>0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="1">
-       <widget class="QLabel" name="boost_per">
-        <property name="text">
-         <string>0</string>
-        </property>
-       </widget>
-      </item>
-      <item row="9" column="0">
-       <widget class="QLabel" name="label_25">
-        <property name="text">
-         <string>How Many MacGuffins Per? :O</string>
-        </property>
-       </widget>
-      </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="label_26">
-        <property name="text">
-         <string>How Much Boost Per? :O </string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_9">
-        <property name="text">
-         <string>Max Kills Needed Per PP</string>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label_20">
-        <property name="text">
-         <string>How Much AP Per? :O</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="label_23">
-        <property name="text">
-         <string>Average Poop Per? :O</string>
         </property>
        </widget>
       </item>
@@ -446,28 +487,28 @@ Oneshot Floor</string>
         </property>
        </widget>
       </item>
-      <item row="6" column="1">
-       <widget class="QLabel" name="ap_per">
-        <property name="text">
-         <string>0</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_35">
         <property name="text">
          <string>Minutes Spent</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+        </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="edit_minutes_spent"/>
+      <item row="9" column="1">
+       <widget class="QLabel" name="boost_per">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>430</x>
@@ -477,6 +518,25 @@ Oneshot Floor</string>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="h1_3">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>39</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Time To Get 1</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <property name="header" stdset="0">
+       <string>1</string>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QLabel" name="label_29">
       <property name="text">
