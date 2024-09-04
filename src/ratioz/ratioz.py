@@ -47,9 +47,9 @@ class Ratios:
         setattr(self, f'{type_}_base_goal_cap', ceiling_precise(getattr(self, f'{type_}_base_goal_power') / getattr(self, f'{type_}_edit_power') * getattr(self, f'{type_}_edit_cap'), 250))
         setattr(self, f'{type_}_base_goal_bar', math.ceil(getattr(self, f'{type_}_base_goal_power') / getattr(self, f'{type_}_edit_power') * getattr(self, f'{type_}_edit_bar')))
         # AMOUNT LEFT TO BUY
-        setattr(self, f'{type_}_amount_left_to_buy_power', getattr(self, f'stats_{type_}_base_power') - getattr(self, f'{type_}_base_goal_power'))
-        setattr(self, f'{type_}_amount_left_to_buy_cap', getattr(self, f'stats_{type_}_base_cap') - getattr(self, f'{type_}_base_goal_cap'))
-        setattr(self, f'{type_}_amount_left_to_buy_bar', getattr(self, f'stats_{type_}_base_bar') - getattr(self, f'{type_}_base_goal_bar'))
+        setattr(self, f'{type_}_amount_left_to_buy_power', getattr(self, f'{type_}_base_goal_power') - getattr(self, f'stats_{type_}_base_power'))
+        setattr(self, f'{type_}_amount_left_to_buy_cap', getattr(self, f'{type_}_base_goal_cap') - getattr(self, f'stats_{type_}_base_cap'))
+        setattr(self, f'{type_}_amount_left_to_buy_bar', getattr(self, f'{type_}_base_goal_bar') - getattr(self, f'stats_{type_}_base_bar'))
         # EXP COST
         exp_cost_value = self.type_exp_cost(type_)
         setattr(self, f'{type_}_exp_cost_power', getattr(self, f'{type_}_amount_left_to_buy_power') * exp_cost_value[0])
