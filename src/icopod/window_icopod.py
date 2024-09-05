@@ -6,7 +6,6 @@ from ui.icopod_ui import Ui_icopod_window
 
 from PySide6.QtWidgets import QWidget
 
-import ui.icopod_ui
 from src.stats import Stats
 
 

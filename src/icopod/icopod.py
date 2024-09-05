@@ -1,6 +1,5 @@
 import math
 from math import floor
-from multiprocessing.util import sub_debug
 
 from src.stats import Stats
 from src.utils.ceiling_presice import ceiling_precise
@@ -77,7 +76,7 @@ class ICOPOD:
         self.time_to_get_one_boost = time_to_kill / 0.16
         buffered_kills = min(self.little_blue_pill_stack, self.kills_after_time_spent)
         extra_pp = buffered_kills * bonus_gpp_per_kill / 1000000
-        self.pp_per_time = (self.kills_after_time_spent * gpp_per_kill / 1000000 )+ extra_pp
+        self.pp_per_time = (self.kills_after_time_spent * gpp_per_kill / 1000000) + extra_pp
         self.ap_per_time = floor(self.kills_after_time_spent / self.kills_per_ap_exp)
         exp_drops = 0  # TODO: calculate this shit
         self.exp_per_time = self.ap_per_time * exp_drops
@@ -89,11 +88,11 @@ class ICOPOD:
         avg_recycle_boost = (max_recycle_boost * (1 - boost_recycle)) + max_recycle_boost * boost_recycle
         boost_completion_bonus_ = 0.54  # 0.54 is base value #TODO: find this shit
         boost_multi = (1 + boost_completion_bonus_) * (1 + (0.2 * self.stats.maxed_sets['badly_drawn'])) * (
-                    1 + self.stats.ictpod_perk_dict['Boosted Boosts I'] / 40)* (
-                                  1 + self.stats.ictpod_perk_dict['Boosted Boosts II'] / 50) * (
-                                  1 + self.stats.ictpod_perk_dict['Boosted Boosts III'] / 50) * (
-                                  1 + self.stats.quirk_perk_dict['Beasted Boosts I'] / 50) * (
-                                  1 + self.stats.quirk_perk_dict['Beasted Boosts II'] / 100)
+                1 + self.stats.ictpod_perk_dict['Boosted Boosts I'] / 40) * (
+                              1 + self.stats.ictpod_perk_dict['Boosted Boosts II'] / 50) * (
+                              1 + self.stats.ictpod_perk_dict['Boosted Boosts III'] / 50) * (
+                              1 + self.stats.quirk_perk_dict['Beasted Boosts I'] / 50) * (
+                              1 + self.stats.quirk_perk_dict['Beasted Boosts II'] / 100)
         final_boost_per_boost = avg_recycle_boost * boost_multi
         self.boost_per_time = boost_looted * final_boost_per_boost
 

@@ -1,3 +1,5 @@
+import math
+
 from PySide6.QtCore import Slot, QTimer
 from PySide6.QtWidgets import QWidget, QApplication, QToolTip
 
@@ -73,9 +75,9 @@ class WindowRatios(QWidget):
 
     def draw_type_ratio(self, type_):
         # BASE
-        getattr(self.ui, f"{type_}_base_power").setText(str(getattr(self.ratios, f"stats_{type_}_base_power")))
-        getattr(self.ui, f"{type_}_base_cap").setText(str(getattr(self.ratios, f"stats_{type_}_base_cap")))
-        getattr(self.ui, f"{type_}_base_bar").setText(str(getattr(self.ratios, f"stats_{type_}_base_bar")))
+        getattr(self.ui, f"{type_}_base_power").setText(f'{getattr(self.ratios, f"stats_{type_}_base_power"):.0f}')
+        getattr(self.ui, f"{type_}_base_cap").setText(f'{getattr(self.ratios, f"stats_{type_}_base_cap"):.0f}')
+        getattr(self.ui, f"{type_}_base_bar").setText(f'{getattr(self.ratios, f"stats_{type_}_base_bar"):.0f}')
         # CURRENT RATIO
         getattr(self.ui, f"{type_}_cr_power").setText(str(getattr(self.ratios, f"{type_}_current_ratio_power")))
         getattr(self.ui, f"{type_}_cr_cap").setText(str(getattr(self.ratios, f"{type_}_current_ratio_cap")))
@@ -93,9 +95,12 @@ class WindowRatios(QWidget):
         getattr(self.ui, f"{type_}_amount_left_to_buy_bar").setText(
             str(getattr(self.ratios, f"{type_}_amount_left_to_buy_bar")))
         #       PRICE FOR THAT
-        getattr(self.ui, f"{type_}_exp_cost_power").setText("{} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_power")))
-        getattr(self.ui, f"{type_}_exp_cost_cap").setText("{} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_cap")))
-        getattr(self.ui, f"{type_}_exp_cost_bar").setText("{} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_bar")))
+        getattr(self.ui, f"{type_}_exp_cost_power").setText(
+            "{:.0f} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_power")))
+        getattr(self.ui, f"{type_}_exp_cost_cap").setText(
+            "{:.0f} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_cap")))
+        getattr(self.ui, f"{type_}_exp_cost_bar").setText(
+            "{:.0f} EXP".format(getattr(self.ratios, f"{type_}_exp_cost_bar")))
         getattr(self.ui, f"{type_}_amount_left_to_buy_name").setText(
             "Amount Left To Buy Until Your {} Goal\n(Total Cost: {} EXP)".format(
                 type_,
@@ -106,9 +111,11 @@ class WindowRatios(QWidget):
         getattr(self.ui, f"{type_}_cr_power_checker").setText('~')
         getattr(self.ui, f"{type_}_cr_power_checker").setStyleSheet(return_color_for_cr(1))
         getattr(self.ui, f"{type_}_cr_cap_checker").setText(
-            return_c_for_cr(getattr(self.ratios, f"{type_}_current_ratio_cap") / getattr(self.ratios, f"{type_}_edit_cap")))
+            return_c_for_cr(
+                getattr(self.ratios, f"{type_}_current_ratio_cap") / getattr(self.ratios, f"{type_}_edit_cap")))
         getattr(self.ui, f"{type_}_cr_cap_checker").setStyleSheet(
-            return_color_for_cr(getattr(self.ratios, f"{type_}_current_ratio_cap") / getattr(self.ratios, f"{type_}_edit_cap")))
+            return_color_for_cr(
+                getattr(self.ratios, f"{type_}_current_ratio_cap") / getattr(self.ratios, f"{type_}_edit_cap")))
         getattr(self.ui, f"{type_}_cr_bar_checker").setText(
             return_c_for_cr(getattr(self.ratios, f"{type_}_current_ratio_bar")))
         getattr(self.ui, f"{type_}_cr_bar_checker").setStyleSheet(
@@ -133,9 +140,9 @@ class WindowRatios(QWidget):
             "Amount Left To Buy Until Your Energy:Magic Goal\n(Total Cost: {} EXP)".format(
                 int(self.ratios.em_amount_left_to_buy_sum)))
         #       EXP COST
-        self.ui.em_exp_cost_power.setText('{} EXP'.format(self.ratios.em_exp_cost_power))
-        self.ui.em_exp_cost_cap.setText('{} EXP'.format(self.ratios.em_exp_cost_cap))
-        self.ui.em_exp_cost_bar.setText('{} EXP'.format(self.ratios.em_exp_cost_bar))
+        self.ui.em_exp_cost_power.setText('{:.0f} EXP'.format(self.ratios.em_exp_cost_power))
+        self.ui.em_exp_cost_cap.setText('{:.0f} EXP'.format(self.ratios.em_exp_cost_cap))
+        self.ui.em_exp_cost_bar.setText('{:.0f} EXP'.format(self.ratios.em_exp_cost_bar))
         #       COLORS CHECKER
         self.ui.em_cr_power_checker.setText(return_c_for_cr(self.ratios.em_cr_power))
         self.ui.em_cr_power_checker.setStyleSheet(return_color_for_cr(self.ratios.em_cr_power))
@@ -148,20 +155,20 @@ class WindowRatios(QWidget):
         #   GOAL M : E
         self.ui.em_goal_em_ratio.setText(str(self.ratios.em_goal_em))
         #   OPTIMAL MAGIC TO ENERGY AT RATIO
-        self.ui.me_optimal_energy_for_magic_power.setText(str(self.ratios.me_optimal_for_current_power))
-        self.ui.me_optimal_energy_for_magic_cap.setText(str(self.ratios.me_optimal_for_current_cap))
-        self.ui.me_optimal_energy_for_magic_bar.setText(str(self.ratios.me_optimal_for_current_bar))
+        self.ui.me_optimal_energy_for_magic_power.setText('{:.1f}'.format(self.ratios.me_optimal_for_current_power))
+        self.ui.me_optimal_energy_for_magic_cap.setText('{:.0f}'.format(self.ratios.me_optimal_for_current_cap))
+        self.ui.me_optimal_energy_for_magic_bar.setText('{:.0f}'.format(self.ratios.me_optimal_for_current_bar))
         #   AMOUNT LEFT TO BUY
-        self.ui.me_amount_left_to_buy_power.setText('{}'.format(self.ratios.me_amount_left_to_buy_power))
-        self.ui.me_amount_left_to_buy_cap.setText(str(self.ratios.me_amount_left_to_buy_cap))
-        self.ui.me_amount_left_to_buy_bar.setText('{}'.format(int(self.ratios.me_amount_left_to_buy_bar)))
+        self.ui.me_amount_left_to_buy_power.setText('{:.0f}'.format(math.ceil(self.ratios.me_amount_left_to_buy_power)))
+        self.ui.me_amount_left_to_buy_cap.setText('{:.0f}'.format(math.ceil(self.ratios.me_amount_left_to_buy_cap)))
+        self.ui.me_amount_left_to_buy_bar.setText('{:.0f}'.format(math.ceil(self.ratios.me_amount_left_to_buy_bar)))
         self.ui.name_me_amount_left_to_buy.setText(
             "Amount Left To Buy Until Your MAGIC:ENERGY Goal\n(Total Cost: {} EXP)".format(
-                int(self.ratios.me_amount_left_to_buy_sum)))
+                math.ceil(self.ratios.me_amount_left_to_buy_sum)))
         #       EXP COST
-        self.ui.me_exp_cost_power.setText('{} EXP'.format(self.ratios.me_exp_cost_power))
-        self.ui.me_exp_cost_cap.setText('{} EXP'.format(self.ratios.me_exp_cost_cap))
-        self.ui.me_exp_cost_bar.setText('{} EXP'.format(self.ratios.me_exp_cost_bar))
+        self.ui.me_exp_cost_power.setText('{:.0f} EXP'.format(math.ceil(self.ratios.me_exp_cost_power)))
+        self.ui.me_exp_cost_cap.setText('{:.0f} EXP'.format(math.ceil(self.ratios.me_exp_cost_cap)))
+        self.ui.me_exp_cost_bar.setText('{:.0f} EXP'.format(math.ceil(self.ratios.me_exp_cost_bar)))
 
     def draw_er3_ratio(self):
         #   GOAL ENERGY : R3

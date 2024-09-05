@@ -1,5 +1,3 @@
-from PySide6.QtCore import QRect
-
 from src.icopod.window_icopod import WindowIcopod
 from src.ratioz.window_ratios import WindowRatios
 from ui.ngu_helper_ui import Ui_MainWindow
